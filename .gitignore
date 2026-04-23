@@ -1,0 +1,20 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Build / deploy
+node_modules/
+dist/
+.cache/
+.wrangler/
+
+# Env
+.env
+.env.local
+
+# Superpowers brainstorm session artifacts (don't commit session state)
+.superpowers/brainstorm/*/state/
+.superpowers/brainstorm/*/content/
