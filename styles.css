@@ -505,6 +505,8 @@ button {
   transition: transform var(--duration-fast), box-shadow var(--duration-fast);
 }
 
+.menu__item[hidden] { display: none; }
+
 .menu__item:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow);
