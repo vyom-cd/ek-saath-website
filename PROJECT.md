@@ -1,7 +1,9 @@
 # Ek Saath Cafe — Website
 
 > **📄 Design spec (APPROVED ✅ 2026-04-23):** [`docs/superpowers/specs/2026-04-23-ek-saath-cafe-website-design.md`](docs/superpowers/specs/2026-04-23-ek-saath-cafe-website-design.md)
-> **📋 Build plan:** being written now.
+> **📋 Build plan:** ✅ executed — [`docs/superpowers/plans/2026-04-23-ek-saath-cafe-website.md`](docs/superpowers/plans/2026-04-23-ek-saath-cafe-website.md)
+> **📘 Owner handoff:** ✅ [`HANDOFF.md`](HANDOFF.md)
+> **🌐 Status:** Local only — deployment deferred until owner says "go live".
 > This PROJECT.md is the living overview. The spec above is the source of truth for the build.
 
 A website for **Ek Saath Cafe**, located in Bhilai, Chhattisgarh.
