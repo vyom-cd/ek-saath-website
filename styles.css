@@ -1,0 +1,191 @@
+/* ==========================================================================
+   Ek Saath — Design tokens
+   See docs/superpowers/specs/2026-04-23-ek-saath-cafe-website-design.md
+   ========================================================================== */
+
+:root {
+  /* Palette — 60/30/8/2 */
+  --cream: #f4ede0;
+  --cream-soft: #fbf6ea;
+  --espresso: #2b1e14;
+  --espresso-soft: #3d2817;
+  --terracotta: #8b5a3c;
+  --terracotta-dark: #724629;
+  --olive: #6b7a3e;
+  --border: #e5dcc8;
+  --muted: #6b5d4a;
+
+  /* Fonts */
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Type scale (clamp = fluid responsive) */
+  --text-hero: clamp(2.5rem, 2rem + 4vw, 5.5rem);
+  --text-h2: clamp(1.75rem, 1.5rem + 1.5vw, 2.75rem);
+  --text-h3: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+  --text-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+
+  /* Spacing (8px grid) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-section: clamp(4rem, 3rem + 4vw, 8rem);
+
+  /* Effects */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 3px rgba(43, 30, 20, 0.08);
+  --shadow: 0 4px 20px rgba(43, 30, 20, 0.1);
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Reset + base
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--cream);
+  color: var(--espresso);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--terracotta);
+  text-decoration: none;
+  transition: color var(--duration-fast);
+}
+
+a:hover {
+  color: var(--terracotta-dark);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==========================================================================
+   Layout helpers
+   ========================================================================== */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 2vw + 0.5rem, 2rem);
+}
+
+.section {
+  padding: var(--space-section) 0;
+}
+
+/* ==========================================================================
+   Typography components
+   ========================================================================== */
+
+.label {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  font-weight: 700;
+}
+
+.heading-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--espresso);
+}
+
+/* ==========================================================================
+   Button components
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform var(--duration-fast), background var(--duration-fast), color var(--duration-fast);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--terracotta);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--terracotta-dark);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--espresso);
+  border: 1.5px solid var(--espresso);
+}
+
+.btn-ghost:hover {
+  background: var(--espresso);
+  color: var(--cream);
+}
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Section-specific styles appended below in later tasks
+   ========================================================================== */
