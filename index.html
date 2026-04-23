@@ -6,19 +6,18 @@
   <title>Ek Saath — Specialty Coffee & Pizzeria · Bhilai</title>
   <meta name="description" content="Multi-roaster specialty coffee and artisanal pizza in Bhilai. 100% vegetarian. Open 11 AM to midnight. Where friends meet and memories are made.">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Ek Saath — Specialty Coffee & Pizzeria">
   <meta property="og:description" content="Multi-roaster coffee and artisanal pizza in Bhilai. 100% veg.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/hero.webp">
+  <meta property="og:image" content="assets/hero.jpg">
 
-  <!-- Favicon -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-  <!-- Fonts: preconnect then load -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -26,28 +25,48 @@
 
   <a href="#top" class="skip-link">Skip to main content</a>
 
+  <!-- NAV -->
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a href="#top" class="nav__logo">
-        <span class="nav__logo-mark">Ek Saath<span class="nav__logo-dot">.</span></span>
+        <span class="nav__logo-hindi">एक साथ</span>
+        <span class="nav__logo-en">ek saath<span class="nav__logo-dot">.</span></span>
       </a>
       <nav class="nav__links" aria-label="Main navigation">
-        <a href="#story">Story</a>
-        <a href="#menu">Menu</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#visit">Visit</a>
+        <a href="#story" data-section="story">Story</a>
+        <a href="#menu" data-section="menu">Menu</a>
+        <a href="#gallery" data-section="gallery">Gallery</a>
+        <a href="#visit" data-section="visit">Visit</a>
       </nav>
-      <a class="btn btn-primary nav__cta" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.14-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.76.45 3.41 1.25 4.85L2 22l5.25-1.37A9.95 9.95 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.51 0-2.91-.4-4.13-1.1l-.3-.17-3.12.81.83-3.04-.2-.31A7.96 7.96 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
-        WhatsApp
-      </a>
+      <div class="nav__right">
+        <span class="open-now" id="open-now" aria-live="polite" hidden>
+          <span class="open-now__dot" aria-hidden="true"></span>
+          <span class="open-now__text">Open now</span>
+        </span>
+        <a class="btn btn-primary nav__cta" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.14-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.76.45 3.41 1.25 4.85L2 22l5.25-1.37A9.95 9.95 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.51 0-2.91-.4-4.13-1.1l-.3-.17-3.12.81.83-3.04-.2-.31A7.96 7.96 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+          <span class="nav__cta-text">WhatsApp</span>
+        </a>
+      </div>
     </div>
   </header>
 
   <main>
+
+    <!-- HERO -->
     <section class="hero" id="top">
+      <!-- Decorative flourishes (absolute positioned) -->
+      <svg class="hero__ring" width="220" height="220" viewBox="0 0 220 220" aria-hidden="true">
+        <circle cx="110" cy="110" r="104" fill="none" stroke="#8b5a3c" stroke-width="1.5" stroke-dasharray="3 6" opacity="0.3"/>
+        <circle cx="110" cy="110" r="90" fill="none" stroke="#8b5a3c" stroke-width="1" opacity="0.2"/>
+      </svg>
+      <svg class="hero__bean" width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M24 4 C14 4, 4 14, 4 24 C4 34, 14 44, 24 44 C34 44, 44 34, 44 24 C44 14, 34 4, 24 4 Z M24 8 C18 8, 8 18, 8 24 C8 30, 18 40, 24 40 C30 40, 40 30, 40 24 C40 18, 30 8, 24 8 Z" fill="#8b5a3c" opacity="0.25"/>
+        <path d="M24 6 L24 42" stroke="#8b5a3c" stroke-width="1.5" opacity="0.4"/>
+      </svg>
+
       <div class="container hero__inner">
-        <div class="hero__text">
+        <div class="hero__text reveal">
           <div class="label hero__label">
             Specialty Coffee · Pizzeria
             <span class="hero__veg">· 100% Veg <span class="hero__leaf" aria-hidden="true">🌿</span></span>
@@ -66,27 +85,69 @@
           </div>
         </div>
 
-        <!-- Placeholder hero visual — replaced with real photo later -->
-        <div class="hero__visual" data-placeholder="hero-photo" aria-hidden="true">
-          <div class="hero__visual-inner">
-            <div class="hero__visual-grain"></div>
-          </div>
+        <div class="hero__visual reveal">
+          <img src="assets/hero.jpg" alt="Warm-lit cafe interior with moody lighting" class="hero__photo" fetchpriority="high" width="800" height="1000">
+          <div class="hero__visual-grain" aria-hidden="true"></div>
+          <!-- Devanagari watermark on hero -->
+          <div class="hero__watermark" aria-hidden="true">एक साथ</div>
         </div>
       </div>
     </section>
 
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span class="marquee__item">एक साथ</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Specialty Coffee</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Pure Veg</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Multi-Roaster</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Artisanal Pizza</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Where friends meet</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Bhilai</span>
+        <span class="marquee__sep">·</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="marquee__item">एक साथ</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Specialty Coffee</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Pure Veg</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Multi-Roaster</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Artisanal Pizza</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Where friends meet</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Bhilai</span>
+        <span class="marquee__sep">·</span>
+      </div>
+    </div>
+
+    <!-- STORY -->
     <section class="story section" id="story">
+      <div class="ghost-num" aria-hidden="true">01</div>
       <div class="container story__inner">
 
-        <div class="story__visual" data-placeholder="story-photo" aria-hidden="true"></div>
+        <div class="story__visual reveal">
+          <img src="assets/story.jpg" alt="Cafe counter with warm wood and low lighting" loading="lazy" width="800" height="1000">
+          <span class="story__sticker" aria-hidden="true">
+            <span>Since</span>
+            <strong>2021</strong>
+          </span>
+        </div>
 
-        <div class="story__text">
+        <div class="story__text reveal">
           <div class="label">The story</div>
           <h2 class="heading-serif story__title">
-            Coffee, pizza, and a room full of regulars.
+            Coffee, pizza,<br>and a room full of regulars.
           </h2>
 
-          <!-- COPY: draft, owner to confirm. Based on public info from Restaurant Guru + Instagram. -->
           <p>
             Ek Saath started in Bhilai with one idea &mdash; a place where families,
             students, and coffee people could all feel at home. We pull from
@@ -98,18 +159,25 @@
             because the best conversations start late.
           </p>
 
+          <!-- Big pull quote -->
+          <blockquote class="pullquote">
+            <span class="pullquote__mark" aria-hidden="true">&ldquo;</span>
+            <p>It&rsquo;s a small community, and a really warm one.</p>
+            <cite>— A regular</cite>
+          </blockquote>
+
           <div class="story__meta">
             <div>
               <div class="label">Signature</div>
-              <div class="story__meta-value">Vietnamese cold brew</div>
+              <div class="story__meta-value">Vietnamese Cold Brew</div>
             </div>
             <div>
-              <div class="label">Locations</div>
-              <div class="story__meta-value">Nehru Nagar · Aveer Arcade</div>
+              <div class="label">Roasters</div>
+              <div class="story__meta-value">Multi-roaster</div>
             </div>
             <div>
-              <div class="label">Rating</div>
-              <div class="story__meta-value">4.1 ★ &middot; 100+ reviews</div>
+              <div class="label">Rated</div>
+              <div class="story__meta-value">4.1 ★ · 100+ reviews</div>
             </div>
           </div>
         </div>
@@ -117,56 +185,39 @@
       </div>
     </section>
 
+    <!-- MENU -->
     <section class="menu section" id="menu">
+      <div class="ghost-num" aria-hidden="true">02</div>
       <div class="container">
-        <div class="menu__header">
+        <div class="menu__header reveal">
           <div class="label">The menu</div>
           <h2 class="heading-serif menu__title">Brewed, baked, and built to share.</h2>
           <p class="menu__note">
-            Tap any item to order on WhatsApp.
-            <span class="menu__pending" title="These items come from public sources — pending owner confirmation">
-              Menu &amp; prices pending confirmation
-            </span>
+            Tap any item to order on WhatsApp. Menu curated from our most-ordered — full list at the cafe.
           </p>
         </div>
 
         <div class="menu__tabs" role="tablist">
-          <button class="menu__tab is-active" role="tab" aria-selected="true" data-filter="coffee">Coffee</button>
+          <button class="menu__tab is-active" role="tab" aria-selected="true" data-filter="hot-coffee">Hot Coffee</button>
+          <button class="menu__tab" role="tab" aria-selected="false" data-filter="cold-coffee">Cold Coffee</button>
+          <button class="menu__tab" role="tab" aria-selected="false" data-filter="shakes">Shakes &amp; Frappe</button>
+          <button class="menu__tab" role="tab" aria-selected="false" data-filter="matcha-tea">Matcha &amp; Tea</button>
           <button class="menu__tab" role="tab" aria-selected="false" data-filter="pizza">Pizza</button>
-          <button class="menu__tab" role="tab" aria-selected="false" data-filter="pasta">Pasta</button>
-          <button class="menu__tab" role="tab" aria-selected="false" data-filter="shakes">Shakes &amp; More</button>
+          <button class="menu__tab" role="tab" aria-selected="false" data-filter="mains">Pasta &amp; Mains</button>
+          <button class="menu__tab" role="tab" aria-selected="false" data-filter="bites">Bites &amp; Dessert</button>
         </div>
 
-        <!-- MENU: pending owner confirmation. Items from public Zomato/Restaurant-Guru. Prices marked ₹— where not public. -->
+        <!-- MENU: real items from Zomato; prices pending owner confirmation -->
         <div class="menu__list" id="menu-list">
 
-          <!-- Coffee -->
-          <article class="menu__item" data-category="coffee">
+          <!-- HOT COFFEE -->
+          <article class="menu__item menu__item--feature" data-category="hot-coffee">
+            <div class="menu__item-media">
+              <img src="assets/gallery/02-coffee.jpg" alt="" loading="lazy">
+            </div>
             <div class="menu__item-text">
-              <h3>Vietnamese Cold Brew <span class="menu__badge">Signature</span></h3>
-              <p>Strong, sweet, slow-steeped. Our house favourite.</p>
-            </div>
-            <div class="menu__item-actions">
-              <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Vietnamese%20Cold%20Brew">Order</a>
-            </div>
-          </article>
-
-          <article class="menu__item" data-category="coffee">
-            <div class="menu__item-text">
-              <h3>Iced Coffee</h3>
-              <p>Chilled classic. Clean, cold, uncomplicated.</p>
-            </div>
-            <div class="menu__item-actions">
-              <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Iced%20Coffee">Order</a>
-            </div>
-          </article>
-
-          <article class="menu__item" data-category="coffee">
-            <div class="menu__item-text">
-              <h3>Cappuccino</h3>
-              <p>Espresso, steamed milk, a thick foam cap.</p>
+              <h3>Cappuccino <span class="menu__badge">Popular</span></h3>
+              <p>Espresso, steamed milk, a thick foam cap. The backbone of our bar.</p>
             </div>
             <div class="menu__item-actions">
               <span class="menu__price">₹—</span>
@@ -174,135 +225,164 @@
             </div>
           </article>
 
-          <article class="menu__item" data-category="coffee">
+          <article class="menu__item" data-category="hot-coffee"><div class="menu__item-text"><h3>Latte</h3><p>Smooth, milky, comforting.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Latte">Order</a></div></article>
+          <article class="menu__item" data-category="hot-coffee"><div class="menu__item-text"><h3>Flat White</h3><p>Double espresso, micro-foam. Strong, clean.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Flat%20White">Order</a></div></article>
+          <article class="menu__item" data-category="hot-coffee"><div class="menu__item-text"><h3>Hot Americano</h3><p>Espresso stretched with hot water. Black, honest.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Hot%20Americano">Order</a></div></article>
+          <article class="menu__item" data-category="hot-coffee"><div class="menu__item-text"><h3>Macchiato</h3><p>Espresso marked with a spoon of steamed milk.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Macchiato">Order</a></div></article>
+          <article class="menu__item" data-category="hot-coffee"><div class="menu__item-text"><h3>Cortado</h3><p>Equal parts espresso and warm milk.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Cortado">Order</a></div></article>
+          <article class="menu__item" data-category="hot-coffee"><div class="menu__item-text"><h3>Mocha</h3><p>Espresso, chocolate, steamed milk. Dessert-meets-drink.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Mocha">Order</a></div></article>
+          <article class="menu__item" data-category="hot-coffee"><div class="menu__item-text"><h3>Fresh Vanilla Latte</h3><p>Real vanilla, steamed milk, espresso.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Fresh%20Vanilla%20Latte">Order</a></div></article>
+          <article class="menu__item" data-category="hot-coffee"><div class="menu__item-text"><h3>Hazelnut Latte</h3><p>Nutty, warming, a touch of sweetness.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Hazelnut%20Latte">Order</a></div></article>
+          <article class="menu__item" data-category="hot-coffee"><div class="menu__item-text"><h3>Hot Nutella</h3><p>Hot chocolate&rsquo;s mischievous cousin.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Hot%20Nutella">Order</a></div></article>
+
+          <!-- COLD COFFEE -->
+          <article class="menu__item menu__item--feature" data-category="cold-coffee" hidden>
+            <div class="menu__item-media">
+              <img src="assets/gallery/05-latte.jpg" alt="" loading="lazy">
+            </div>
             <div class="menu__item-text">
-              <h3>Latte</h3>
-              <p>Smooth, milky, comforting.</p>
+              <h3>Ek Saath Vietnamese Cold Coffee <span class="menu__badge">Signature</span></h3>
+              <p>Strong, sweet, slow-steeped with condensed milk. Our house favourite.</p>
             </div>
             <div class="menu__item-actions">
               <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Latte">Order</a>
+              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Vietnamese%20Cold%20Coffee">Order</a>
             </div>
           </article>
 
-          <!-- Pizza -->
-          <article class="menu__item" data-category="pizza" hidden>
+          <article class="menu__item" data-category="cold-coffee" hidden><div class="menu__item-text"><h3>Ek Saath Iced Coffee</h3><p>Chilled classic. Clean, cold, uncomplicated.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Iced%20Coffee">Order</a></div></article>
+          <article class="menu__item" data-category="cold-coffee" hidden><div class="menu__item-text"><h3>Iced Latte</h3><p>Espresso over milk over ice.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Iced%20Latte">Order</a></div></article>
+          <article class="menu__item" data-category="cold-coffee" hidden><div class="menu__item-text"><h3>Iced Cafe Mocha</h3><p>Cold coffee, chocolate, real talk.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Iced%20Cafe%20Mocha">Order</a></div></article>
+          <article class="menu__item" data-category="cold-coffee" hidden><div class="menu__item-text"><h3>Iced Americano</h3><p>Black, iced, grown-up.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Iced%20Americano">Order</a></div></article>
+          <article class="menu__item" data-category="cold-coffee" hidden><div class="menu__item-text"><h3>Iced Espresso</h3><p>Two shots, ice, nothing to hide.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Iced%20Espresso">Order</a></div></article>
+          <article class="menu__item" data-category="cold-coffee" hidden><div class="menu__item-text"><h3>Cold Brew Tonic</h3><p>Cold brew + tonic water. Strange. Good.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Cold%20Brew%20Tonic">Order</a></div></article>
+
+          <!-- SHAKES & FRAPPE -->
+          <article class="menu__item" data-category="shakes" hidden><div class="menu__item-text"><h3>Nutella Mocha Frappe</h3><p>Blended, chocolatey, not quietly sweet.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Nutella%20Mocha%20Frappe">Order</a></div></article>
+          <article class="menu__item" data-category="shakes" hidden><div class="menu__item-text"><h3>Choco Chips Frappe</h3><p>Cold, thick, studded with chips.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Choco%20Chips%20Frappe">Order</a></div></article>
+          <article class="menu__item" data-category="shakes" hidden><div class="menu__item-text"><h3>Hazelnut Frappe</h3><p>Blended hazelnut coffee on ice.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Hazelnut%20Frappe">Order</a></div></article>
+          <article class="menu__item" data-category="shakes" hidden><div class="menu__item-text"><h3>Nutella Shake</h3><p>Spoon-thick, unapologetic.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Nutella%20Shake">Order</a></div></article>
+          <article class="menu__item" data-category="shakes" hidden><div class="menu__item-text"><h3>Strawberry Shake</h3><p>Fresh, bright, properly pink.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Strawberry%20Shake">Order</a></div></article>
+          <article class="menu__item" data-category="shakes" hidden><div class="menu__item-text"><h3>Oreo Thick Shake</h3><p>Blended cookies, vanilla ice cream, a spoon required.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Oreo%20Thick%20Shake">Order</a></div></article>
+
+          <!-- MATCHA & TEA -->
+          <article class="menu__item menu__item--feature" data-category="matcha-tea" hidden>
+            <div class="menu__item-media">
+              <img src="assets/gallery/05-latte.jpg" alt="" loading="lazy">
+            </div>
             <div class="menu__item-text">
-              <h3>Paneer Makhani Pizza <span class="menu__badge">Fan favourite</span></h3>
-              <p>Rich makhani sauce, soft paneer, mozzarella on hand-stretched base.</p>
+              <h3>Matcha Latte <span class="menu__badge">House special</span></h3>
+              <p>Ceremonial-grade matcha, whisked, poured over steamed milk.</p>
             </div>
             <div class="menu__item-actions">
               <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Paneer%20Makhani%20Pizza">Order</a>
+              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Matcha%20Latte">Order</a>
             </div>
           </article>
 
-          <article class="menu__item" data-category="pizza" hidden>
+          <article class="menu__item" data-category="matcha-tea" hidden><div class="menu__item-text"><h3>Hojicha Latte</h3><p>Roasted Japanese tea, smoky and smooth.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Hojicha%20Latte">Order</a></div></article>
+          <article class="menu__item" data-category="matcha-tea" hidden><div class="menu__item-text"><h3>Ek Saath Iced Tea</h3><p>Cold-brewed, lightly sweetened.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Iced%20Tea">Order</a></div></article>
+          <article class="menu__item" data-category="matcha-tea" hidden><div class="menu__item-text"><h3>Ek Saath Hot Chocolate</h3><p>Thick, real cocoa, proper winter energy.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Hot%20Chocolate">Order</a></div></article>
+
+          <!-- PIZZA -->
+          <article class="menu__item menu__item--feature" data-category="pizza" hidden>
+            <div class="menu__item-media">
+              <img src="assets/gallery/03-pizza.jpg" alt="" loading="lazy">
+            </div>
             <div class="menu__item-text">
-              <h3>Margherita</h3>
-              <p>Tomato, mozzarella, basil. The original test.</p>
+              <h3>Farm House Pizza <span class="menu__badge">Fan favourite</span></h3>
+              <p>Mozzarella, bell pepper, zucchini, broccoli, black olives, jalapeño, onion. Our greens-forward signature.</p>
             </div>
             <div class="menu__item-actions">
               <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Margherita%20Pizza">Order</a>
+              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Farm%20House%20Pizza">Order</a>
             </div>
           </article>
 
-          <article class="menu__item" data-category="pizza" hidden>
-            <div class="menu__item-text">
-              <h3>Farmhouse</h3>
-              <p>Onions, capsicum, tomato, corn, mozzarella.</p>
-            </div>
-            <div class="menu__item-actions">
-              <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Farmhouse%20Pizza">Order</a>
-            </div>
-          </article>
+          <article class="menu__item" data-category="pizza" hidden><div class="menu__item-text"><h3>Margherita Pizza</h3><p>Buffalo mozzarella, parmesan, basil. The classic.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Margherita%20Pizza">Order</a></div></article>
+          <article class="menu__item" data-category="pizza" hidden><div class="menu__item-text"><h3>Pesto Pizza</h3><p>Green pesto base, mozzarella, zucchini, broccoli, jalapeño, cherry.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Pesto%20Pizza">Order</a></div></article>
+          <article class="menu__item" data-category="pizza" hidden><div class="menu__item-text"><h3>Cancun Pizza</h3><p>Mozzarella, feta, sundried tomatoes, black olives.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Cancun%20Pizza">Order</a></div></article>
+          <article class="menu__item" data-category="pizza" hidden><div class="menu__item-text"><h3>Paneer Makhani Pizza</h3><p>Rich makhani sauce, soft paneer, mozzarella. A house reinvention.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Paneer%20Makhani%20Pizza">Order</a></div></article>
 
-          <!-- Pasta -->
-          <article class="menu__item" data-category="pasta" hidden>
-            <div class="menu__item-text">
-              <h3>Spaghetti Arrabbiata</h3>
-              <p>Spicy tomato, garlic, chilli, olive oil.</p>
-            </div>
-            <div class="menu__item-actions">
-              <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Spaghetti%20Arrabbiata">Order</a>
-            </div>
-          </article>
+          <!-- PASTA & MAINS -->
+          <article class="menu__item" data-category="mains" hidden><div class="menu__item-text"><h3>Penne Arrabbiata</h3><p>Spicy tomato, garlic, chilli, olive oil.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Penne%20Arrabbiata">Order</a></div></article>
+          <article class="menu__item" data-category="mains" hidden><div class="menu__item-text"><h3>Alfredo Pasta</h3><p>Creamy white sauce, parmesan, cracked pepper.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Alfredo%20Pasta">Order</a></div></article>
+          <article class="menu__item" data-category="mains" hidden><div class="menu__item-text"><h3>Pesto Pasta</h3><p>House-made basil pesto, parmesan, olive oil.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Pesto%20Pasta">Order</a></div></article>
+          <article class="menu__item" data-category="mains" hidden><div class="menu__item-text"><h3>Sourdough Open Toast</h3><p>House sourdough, seasonal toppings. Ask for today&rsquo;s.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Sourdough%20Open%20Toast">Order</a></div></article>
+          <article class="menu__item" data-category="mains" hidden><div class="menu__item-text"><h3>Sourdough Sandwich</h3><p>Two slices, loaded right.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Sourdough%20Sandwich">Order</a></div></article>
+          <article class="menu__item" data-category="mains" hidden><div class="menu__item-text"><h3>Wrap</h3><p>Rolled, grilled, ready for now.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Wrap">Order</a></div></article>
 
-          <article class="menu__item" data-category="pasta" hidden>
-            <div class="menu__item-text">
-              <h3>Alfredo Pasta</h3>
-              <p>Creamy white sauce, parmesan, cracked pepper.</p>
-            </div>
-            <div class="menu__item-actions">
-              <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Alfredo%20Pasta">Order</a>
-            </div>
-          </article>
+          <!-- BITES & DESSERT -->
+          <article class="menu__item" data-category="bites" hidden><div class="menu__item-text"><h3>Ek Saath Cheese Sticks</h3><p>Crisp outside, molten inside.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Cheese%20Sticks">Order</a></div></article>
+          <article class="menu__item" data-category="bites" hidden><div class="menu__item-text"><h3>Garlic Bread</h3><p>Buttery, garlicky, correct.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Garlic%20Bread">Order</a></div></article>
+          <article class="menu__item" data-category="bites" hidden><div class="menu__item-text"><h3>Cafe Bites</h3><p>Small plates to share.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Cafe%20Bites">Order</a></div></article>
+          <article class="menu__item" data-category="bites" hidden><div class="menu__item-text"><h3>Ek Saath Dessert</h3><p>The sweet sign-off. House selection.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Dessert">Order</a></div></article>
+          <article class="menu__item" data-category="bites" hidden><div class="menu__item-text"><h3>Affogato</h3><p>A shot of hot espresso over vanilla ice cream. The universe.</p></div><div class="menu__item-actions"><span class="menu__price">₹—</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Affogato">Order</a></div></article>
 
-          <!-- Shakes -->
-          <article class="menu__item" data-category="shakes" hidden>
-            <div class="menu__item-text">
-              <h3>Oreo Thick Shake</h3>
-              <p>Spoon-required thick. Blended cookies, vanilla ice cream.</p>
-            </div>
-            <div class="menu__item-actions">
-              <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Oreo%20Thick%20Shake">Order</a>
-            </div>
-          </article>
+        </div>
 
-          <article class="menu__item" data-category="shakes" hidden>
-            <div class="menu__item-text">
-              <h3>Chocolate Shake</h3>
-              <p>Deep, rich, cold. The safe order that never fails.</p>
-            </div>
-            <div class="menu__item-actions">
-              <span class="menu__price">₹—</span>
-              <a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Chocolate%20Shake">Order</a>
-            </div>
-          </article>
-
+        <div class="menu__footer">
+          <p class="menu__full-note">Full 200+ item menu available on <a href="https://www.zomato.com/durg-bhilai/ek-saath-pizzeria-nehru-nagar/order" target="_blank" rel="noopener">Zomato</a>, <a href="https://www.swiggy.com/city/bhilai/ek-saath-specialty-coffee-and-pizzeria-nehru-nagar-rest1227686" target="_blank" rel="noopener">Swiggy</a>, or in-cafe.</p>
         </div>
       </div>
     </section>
 
+    <!-- GALLERY (BENTO) -->
     <section class="gallery section" id="gallery">
+      <div class="ghost-num" aria-hidden="true">03</div>
       <div class="container">
-        <div class="gallery__header">
+        <div class="gallery__header reveal">
           <div class="label">The room</div>
           <h2 class="heading-serif gallery__title">A few looks at the place.</h2>
         </div>
 
-        <div class="gallery__grid">
-          <div class="gallery__item gallery__item--tall" data-placeholder="gallery-1" aria-label="Cafe interior"><span>Cafe interior</span></div>
-          <div class="gallery__item" data-placeholder="gallery-2" aria-label="Vietnamese cold brew"><span>Cold brew</span></div>
-          <div class="gallery__item" data-placeholder="gallery-3" aria-label="Pizza on the pass"><span>Pizza on the pass</span></div>
-          <div class="gallery__item gallery__item--wide" data-placeholder="gallery-4" aria-label="Friends at a table"><span>Friends at a table</span></div>
-          <div class="gallery__item" data-placeholder="gallery-5" aria-label="Latte art"><span>Latte art</span></div>
-          <div class="gallery__item" data-placeholder="gallery-6" aria-label="Evening ambience"><span>Evening ambience</span></div>
+        <div class="gallery__bento reveal">
+          <figure class="bento bento--hero">
+            <img src="assets/gallery/01-interior.jpg" alt="Interior of Ek Saath with warm wood and amber lighting" loading="lazy">
+            <figcaption>Interior · evening</figcaption>
+          </figure>
+          <figure class="bento bento--tall">
+            <img src="assets/gallery/04-friends.jpg" alt="Friends at a cafe table sharing drinks" loading="lazy">
+            <figcaption>Friends &amp; regulars</figcaption>
+          </figure>
+          <figure class="bento">
+            <img src="assets/gallery/03-pizza.jpg" alt="Artisanal pizza with fresh toppings" loading="lazy">
+            <figcaption>The pizza</figcaption>
+          </figure>
+          <figure class="bento">
+            <img src="assets/gallery/02-coffee.jpg" alt="A pour of coffee" loading="lazy">
+            <figcaption>The coffee</figcaption>
+          </figure>
+          <figure class="bento bento--wide">
+            <img src="assets/gallery/06-evening.jpg" alt="Evening ambience at Ek Saath" loading="lazy">
+            <figcaption>After sundown</figcaption>
+          </figure>
+          <figure class="bento">
+            <img src="assets/gallery/05-latte.jpg" alt="Matcha latte in a glass" loading="lazy">
+            <figcaption>Matcha latte</figcaption>
+          </figure>
         </div>
 
-        <div class="gallery__footer">
+        <div class="gallery__footer reveal">
           <p>More on Instagram.</p>
           <a class="btn btn-ghost" href="https://instagram.com/eksaathindia" target="_blank" rel="noopener">@eksaathindia →</a>
         </div>
       </div>
     </section>
 
+    <!-- VISIT -->
     <section class="visit section" id="visit">
+      <div class="ghost-num" aria-hidden="true">04</div>
       <div class="container visit__inner">
 
-        <div class="visit__info">
+        <div class="visit__info reveal">
           <div class="label">Visit us</div>
           <h2 class="heading-serif visit__title">Come hang.</h2>
 
           <div class="visit__block">
             <div class="label">Address</div>
             <p>
-              1/36, Nehru Nagar,<br>
+              Nehru Nagar West,<br>
               Bhilai Sector 7, Bhilai,<br>
               Chhattisgarh &mdash; 490006
             </p>
@@ -324,7 +404,7 @@
           </div>
         </div>
 
-        <div class="visit__map">
+        <div class="visit__map reveal">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.0!2d81.379!3d21.198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sEk+Saath+Specialty+Coffee+and+Pizzeria!5e0!3m2!1sen!2sin!4v1714000000"
             width="100%"
@@ -339,13 +419,18 @@
 
       </div>
     </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
 
       <div class="footer__brand">
-        <div class="footer__logo">Ek Saath<span class="footer__dot">.</span></div>
+        <div class="footer__logo">
+          <span class="footer__logo-hindi">एक साथ</span>
+          <span class="footer__logo-en">ek saath<span class="footer__dot">.</span></span>
+        </div>
         <p class="footer__tag">Where friends meet,<br>and memories are made.</p>
       </div>
 
@@ -372,7 +457,7 @@
     <div class="footer__bottom">
       <div class="container footer__bottom-inner">
         <span>&copy; 2026 Ek Saath Specialty Coffee &amp; Pizzeria&reg;</span>
-        <span class="footer__small">Pure veg &middot; Bhilai, India</span>
+        <span class="footer__small">Pure veg &middot; Multi-roaster &middot; Bhilai, India</span>
       </div>
     </div>
   </footer>

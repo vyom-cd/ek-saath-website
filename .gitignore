@@ -18,3 +18,22 @@ dist/
 # Superpowers brainstorm session artifacts (don't commit session state)
 .superpowers/brainstorm/*/state/
 .superpowers/brainstorm/*/content/
+
+# Claude Code local settings
+.claude/
+
+# Playwright MCP session data
+.playwright-mcp/
+
+# Debug screenshots (at repo root during development)
+eksaath-*.png
+eksaath-*.jpg
+upgraded-*.jpg
+upgraded-*.png
+zomato-*.jpg
+zomato-*.png
+instagram-*.jpg
+instagram-*.png
+menu-view.jpg
+gallery-view.jpg
+story-view.jpg
