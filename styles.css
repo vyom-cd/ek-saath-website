@@ -779,3 +779,34 @@ button {
   .footer__inner { grid-template-columns: 1fr; }
   .footer__cols { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
 }
+
+/* ==========================================================================
+   Focus states + skip link (a11y)
+   ========================================================================== */
+
+*:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.btn:focus-visible { outline-offset: 4px; }
+a:focus-visible { outline-offset: 4px; }
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--espresso);
+  color: var(--cream);
+  font-size: 0.875rem;
+  border-radius: var(--radius-sm);
+  z-index: 200;
+  transition: top var(--duration-fast);
+}
+
+.skip-link:focus {
+  top: 1rem;
+  color: var(--cream);
+}
