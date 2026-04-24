@@ -1547,21 +1547,32 @@ a:focus-visible { outline-offset: 4px; }
    ========================================================================== */
 
 .roasters {
-  background:
-    radial-gradient(ellipse at 20% 0%, rgba(244, 237, 224, 0.06) 0%, transparent 50%),
-    linear-gradient(165deg, #1e4f49 0%, #153a36 100%);
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(20, 50, 46, 0.82) 0%,
+      rgba(43, 30, 20, 0.8) 55%,
+      rgba(20, 50, 46, 0.7) 100%
+    ),
+    url('assets/beans.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
   color: #ecf0ee;
   padding: var(--space-section) 0;
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle grain to add warmth on the teal */
+/* Grain + vignette for depth */
 .roasters::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/></svg>");
+  background-image:
+    radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.35) 100%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/></svg>");
   pointer-events: none;
   z-index: 0;
 }
@@ -1575,37 +1586,11 @@ a:focus-visible { outline-offset: 4px; }
 
 .roasters__head {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items: center;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-4);
+  align-items: end;
   margin-bottom: var(--space-5);
 }
-
-.roasters__photo {
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  position: relative;
-}
-
-.roasters__photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 8s var(--ease-out-expo);
-}
-
-.roasters__photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(30, 79, 73, 0.2), transparent 60%);
-  pointer-events: none;
-}
-
-.roasters__heading { padding: 0; }
 
 .roasters__title {
   font-size: var(--text-h2);
@@ -1762,7 +1747,6 @@ a:focus-visible { outline-offset: 4px; }
 
 @media (max-width: 880px) {
   .roasters__head { grid-template-columns: 1fr; align-items: start; }
-  .roasters__photo { aspect-ratio: 16 / 10; max-height: 240px; }
   .roasters__grid { grid-template-columns: repeat(2, 1fr); }
 }
 
