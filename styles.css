@@ -365,63 +365,113 @@ body.js-ready .reveal.is-visible {
 }
 
 /* ==========================================================================
-   Hero
+   Hero — full-bleed photo carousel
    ========================================================================== */
 
 .hero {
-  padding: var(--space-5) 0 var(--space-section);
   position: relative;
+  height: 92vh;
+  min-height: 620px;
+  max-height: 900px;
   overflow: hidden;
+  background: var(--espresso);
+  margin-top: -1px;
 }
 
-.hero__ring {
+.hero__carousel {
   position: absolute;
-  top: 15%;
-  left: -3%;
-  z-index: 0;
-  animation: slow-spin 80s linear infinite;
+  inset: 0;
 }
 
-.hero__bean {
+.hero__slides {
   position: absolute;
-  top: 12%;
-  right: 42%;
-  z-index: 0;
-  animation: slow-spin 60s linear infinite reverse;
+  inset: 0;
 }
 
-@keyframes slow-spin {
-  to { transform: rotate(360deg); }
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.4s var(--ease-out-expo), transform 12s var(--ease-out-expo);
+  filter: saturate(0.95);
+}
+
+.hero__photo.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Film grain overlay for texture */
+.hero__grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.2'/></svg>");
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Dark gradient overlay — darker on left (where text is) */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      100deg,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0.4) 35%,
+      rgba(0, 0, 0, 0.25) 60%,
+      rgba(0, 0, 0, 0.35) 100%
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, transparent 30%, transparent 60%, rgba(0, 0, 0, 0.35) 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .hero__inner {
   position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: clamp(2rem, 3vw, 5rem);
+  z-index: 3;
+  height: 100%;
+  display: flex;
   align-items: center;
+  padding-top: 1.5rem;
 }
 
-.hero__label { margin-bottom: var(--space-2); }
+.hero__text {
+  max-width: 52rem;
+  color: var(--cream);
+}
 
-.hero__veg { color: var(--olive); margin-left: 0.5rem; }
+.hero__label {
+  color: var(--cream);
+  opacity: 0.85;
+  margin-bottom: var(--space-2);
+}
 
-.hero__leaf { filter: saturate(0.8); }
+.hero__veg { color: #b9c98e; margin-left: 0.5rem; }
+.hero__leaf { filter: saturate(1); }
 
 .hero__title {
-  font-size: var(--text-hero);
+  color: var(--cream);
+  font-size: clamp(3rem, 2rem + 5.5vw, 7rem);
   letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 .hero__sub {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.4rem);
-  color: var(--espresso-soft);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  color: rgba(244, 237, 224, 0.88);
   margin-top: var(--space-3);
-  max-width: 34ch;
+  max-width: 36ch;
   line-height: 1.5;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
 }
 
 .hero__ctas {
@@ -431,57 +481,76 @@ body.js-ready .reveal.is-visible {
   flex-wrap: wrap;
 }
 
-.hero__visual {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  background: var(--espresso);
+/* Invert ghost button so it's visible on dark photo */
+.hero__btn-ghost {
+  border-color: var(--cream);
+  color: var(--cream);
+  background: rgba(244, 237, 224, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-.hero__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.02);
-  transition: transform 8s var(--ease-out-expo);
-  filter: saturate(0.92) contrast(1.02);
+.hero__btn-ghost:hover {
+  background: var(--cream);
+  color: var(--espresso);
 }
 
-.hero__visual.is-visible .hero__photo { transform: scale(1); }
-
-.hero__visual-grain {
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/></svg>");
-  mix-blend-mode: overlay;
+/* Devanagari watermark */
+.hero__watermark {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 2rem;
+  font-family: var(--font-devanagari);
+  font-style: italic;
+  font-size: clamp(2rem, 2.5vw, 3.5rem);
+  color: rgba(244, 237, 224, 0.5);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  z-index: 4;
   pointer-events: none;
 }
 
-.hero__watermark {
+/* Arrows — visible always on full-bleed hero */
+.hero__arrow {
   position: absolute;
-  bottom: 1.25rem;
-  right: 1.5rem;
-  font-family: var(--font-devanagari);
-  font-style: italic;
-  font-size: clamp(2rem, 3vw, 3.25rem);
-  color: rgba(244, 237, 224, 0.85);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(244, 237, 224, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--cream);
+  border: 1px solid rgba(244, 237, 224, 0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
   line-height: 1;
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  font-family: var(--font-serif);
+  cursor: pointer;
+  z-index: 4;
+  opacity: 0.85;
+  transition: opacity var(--duration-fast), background var(--duration-fast), transform var(--duration-fast);
 }
 
-@media (max-width: 880px) {
-  .hero__inner {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
-  .hero__visual {
-    aspect-ratio: 4 / 3;
-    max-height: 420px;
-    order: -1;
-  }
-  .hero__bean { display: none; }
+.hero__arrow:hover {
+  opacity: 1;
+  background: rgba(244, 237, 224, 0.22);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.hero__arrow--prev { left: 1.5rem; }
+.hero__arrow--next { right: 1.5rem; }
+
+@media (max-width: 720px) {
+  .hero { height: 88vh; min-height: 560px; }
+  .hero__arrow { width: 40px; height: 40px; font-size: 20px; }
+  .hero__arrow--prev { left: 0.75rem; }
+  .hero__arrow--next { right: 0.75rem; }
+  .hero__watermark { right: 1rem; bottom: 4.5rem; }
 }
 
 /* ==========================================================================

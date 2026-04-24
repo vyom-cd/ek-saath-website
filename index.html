@@ -19,7 +19,7 @@
 
   <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
@@ -53,53 +53,47 @@
 
   <main>
 
-    <!-- HERO -->
-    <section class="hero" id="top">
-      <!-- Decorative flourishes (absolute positioned) -->
-      <svg class="hero__ring" width="220" height="220" viewBox="0 0 220 220" aria-hidden="true">
-        <circle cx="110" cy="110" r="104" fill="none" stroke="#8b5a3c" stroke-width="1.5" stroke-dasharray="3 6" opacity="0.3"/>
-        <circle cx="110" cy="110" r="90" fill="none" stroke="#8b5a3c" stroke-width="1" opacity="0.2"/>
-      </svg>
-      <svg class="hero__bean" width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
-        <path d="M24 4 C14 4, 4 14, 4 24 C4 34, 14 44, 24 44 C34 44, 44 34, 44 24 C44 14, 34 4, 24 4 Z M24 8 C18 8, 8 18, 8 24 C8 30, 18 40, 24 40 C30 40, 40 30, 40 24 C40 18, 30 8, 24 8 Z" fill="#8b5a3c" opacity="0.25"/>
-        <path d="M24 6 L24 42" stroke="#8b5a3c" stroke-width="1.5" opacity="0.4"/>
-      </svg>
+    <!-- HERO — full-bleed carousel -->
+    <section class="hero" id="top" aria-label="Hero">
+      <div class="hero__carousel" id="hero-carousel">
+        <div class="hero__slides">
+          <img src="assets/hero.jpg" alt="Warm-lit cafe interior with amber lighting" class="hero__photo is-active" fetchpriority="high">
+          <img src="assets/hero-2.jpg" alt="Espresso pour close-up" class="hero__photo" loading="lazy">
+          <img src="assets/hero-3.jpg" alt="Cafe interior with hanging lights" class="hero__photo" loading="lazy">
+        </div>
+        <div class="hero__grain" aria-hidden="true"></div>
+        <div class="hero__overlay" aria-hidden="true"></div>
 
-      <div class="container hero__inner">
-        <div class="hero__text reveal">
-          <div class="label hero__label">
-            Specialty Coffee · Pizzeria
-            <span class="hero__veg">· 100% Veg <span class="hero__leaf" aria-hidden="true">🌿</span></span>
-          </div>
-          <h1 class="hero__title heading-serif">
-            Where friends meet,<br>
-            and memories are made.
-          </h1>
-          <p class="hero__sub">
-            Multi-roaster coffee, hand-stretched pizzas, and a table that&rsquo;s always open.
-            Open 11 AM to midnight. Bhilai, Chhattisgarh.
-          </p>
-          <div class="hero__ctas">
-            <a class="btn btn-primary" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order">Order on WhatsApp</a>
-            <a class="btn btn-ghost" href="#menu">See the menu</a>
+        <button class="hero__arrow hero__arrow--prev" aria-label="Previous photo" data-dir="-1">‹</button>
+        <button class="hero__arrow hero__arrow--next" aria-label="Next photo" data-dir="1">›</button>
+
+        <div class="container hero__inner">
+          <div class="hero__text reveal">
+            <div class="label hero__label">
+              Specialty Coffee · Pizzeria
+              <span class="hero__veg">· 100% Veg <span class="hero__leaf" aria-hidden="true">🌿</span></span>
+            </div>
+            <h1 class="hero__title heading-serif">
+              Where friends meet,<br>
+              and memories are made.
+            </h1>
+            <p class="hero__sub">
+              Multi-roaster coffee, hand-stretched pizzas, and a table that&rsquo;s always open.
+              Open 11 AM to midnight. Bhilai, Chhattisgarh.
+            </p>
+            <div class="hero__ctas">
+              <a class="btn btn-primary" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order">Order on WhatsApp</a>
+              <a class="btn btn-ghost hero__btn-ghost" href="#menu">See the menu</a>
+            </div>
           </div>
         </div>
 
-        <div class="hero__visual reveal" id="hero-carousel">
-          <div class="hero__slides">
-            <img src="assets/hero.jpg" alt="Warm-lit cafe interior with amber lighting" class="hero__photo is-active" fetchpriority="high" width="800" height="1000" data-caption="Where friends meet, and memories are made.">
-            <img src="assets/hero-2.jpg" alt="Espresso pour close-up" class="hero__photo" loading="lazy" data-caption="Pulled with patience. Poured with pride.">
-            <img src="assets/hero-3.jpg" alt="Cafe interior with hanging lights" class="hero__photo" loading="lazy" data-caption="Open till midnight. Pure veg, always.">
-          </div>
-          <div class="hero__visual-grain" aria-hidden="true"></div>
-          <div class="hero__watermark" aria-hidden="true">एक साथ</div>
-          <button class="hero__arrow hero__arrow--prev" aria-label="Previous photo" data-dir="-1">‹</button>
-          <button class="hero__arrow hero__arrow--next" aria-label="Next photo" data-dir="1">›</button>
-          <div class="hero__dots" role="tablist">
-            <button class="hero__dot is-active" data-slide="0" aria-label="Photo 1"></button>
-            <button class="hero__dot" data-slide="1" aria-label="Photo 2"></button>
-            <button class="hero__dot" data-slide="2" aria-label="Photo 3"></button>
-          </div>
+        <div class="hero__watermark" aria-hidden="true">एक साथ</div>
+
+        <div class="hero__dots" role="tablist">
+          <button class="hero__dot is-active" data-slide="0" aria-label="Photo 1"></button>
+          <button class="hero__dot" data-slide="1" aria-label="Photo 2"></button>
+          <button class="hero__dot" data-slide="2" aria-label="Photo 3"></button>
         </div>
       </div>
     </section>
