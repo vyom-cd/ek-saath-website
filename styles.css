@@ -1542,3 +1542,184 @@ a:focus-visible { outline-offset: 4px; }
   /* push body up to make room for fixed bar */
   .footer { padding-bottom: 80px; }
 }
+
+/* ==========================================================================
+   Brewing methods (editorial section between Roasters and Menu)
+   ========================================================================== */
+
+.brewing {
+  background: var(--cream-soft);
+  padding: var(--space-section) 0;
+  position: relative;
+}
+
+.brewing__head {
+  max-width: 640px;
+  margin: 0 auto var(--space-5);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.brewing__title {
+  font-size: var(--text-h2);
+  margin: var(--space-2) auto;
+  max-width: 18ch;
+}
+
+.brewing__sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1.0625rem;
+  max-width: 44ch;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+.brewing__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.brew {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform var(--duration-normal), box-shadow var(--duration-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.brew:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.brew__icon {
+  width: 40px;
+  height: 40px;
+  color: var(--terracotta);
+  margin-bottom: 0.25rem;
+}
+
+.brew__from {
+  font-size: 0.6875rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.brew__name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.375rem;
+  color: var(--espresso);
+  line-height: 1;
+}
+
+.brew__time {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--terracotta);
+  line-height: 1;
+  margin: 0.25rem 0;
+}
+
+.brew__time-num {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.brew__time-unit {
+  font-size: 0.875rem;
+  margin-left: 0.2rem;
+  opacity: 0.8;
+}
+
+.brew__desc {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  line-height: 1.45;
+  flex: 1;
+}
+
+.brew__tags {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.brew__tag {
+  font-size: 0.625rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 2px 7px;
+  background: var(--cream);
+  border-radius: 999px;
+}
+
+/* Feature card — cold brew signature */
+.brew--feature {
+  background: var(--espresso);
+  color: var(--cream);
+  border-color: var(--espresso);
+  grid-row: span 1;
+  position: relative;
+}
+
+.brew--feature .brew__icon { color: var(--terracotta); }
+.brew--feature .brew__from { color: rgba(244, 237, 224, 0.6); }
+.brew--feature .brew__name { color: var(--cream); }
+.brew--feature .brew__time { color: var(--terracotta); }
+.brew--feature .brew__desc { color: rgba(244, 237, 224, 0.75); }
+.brew--feature .brew__tag { background: rgba(244, 237, 224, 0.1); color: var(--cream); }
+
+.brew__badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--olive);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.625rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.brewing__footer {
+  text-align: center;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.brewing__footer p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.125rem;
+  color: var(--espresso);
+  margin-bottom: var(--space-2);
+}
+
+@media (max-width: 1024px) {
+  .brewing__grid { grid-template-columns: repeat(3, 1fr); }
+  .brew--feature { grid-column: span 3; }
+}
+
+@media (max-width: 640px) {
+  .brewing__grid { grid-template-columns: repeat(2, 1fr); }
+  .brew--feature { grid-column: span 2; }
+  .brew__icon { width: 36px; height: 36px; }
+  .brew__name { font-size: 1.125rem; }
+  .brew__time-num { font-size: 1.625rem; }
+}
