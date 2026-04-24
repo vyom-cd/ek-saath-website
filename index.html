@@ -19,7 +19,7 @@
 
   <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -85,11 +85,21 @@
           </div>
         </div>
 
-        <div class="hero__visual reveal">
-          <img src="assets/hero.jpg" alt="Warm-lit cafe interior with moody lighting" class="hero__photo" fetchpriority="high" width="800" height="1000">
+        <div class="hero__visual reveal" id="hero-carousel">
+          <div class="hero__slides">
+            <img src="assets/hero.jpg" alt="Warm-lit cafe interior with amber lighting" class="hero__photo is-active" fetchpriority="high" width="800" height="1000" data-caption="Where friends meet, and memories are made.">
+            <img src="assets/hero-2.jpg" alt="Espresso pour close-up" class="hero__photo" loading="lazy" data-caption="Pulled with patience. Poured with pride.">
+            <img src="assets/hero-3.jpg" alt="Cafe interior with hanging lights" class="hero__photo" loading="lazy" data-caption="Open till midnight. Pure veg, always.">
+          </div>
           <div class="hero__visual-grain" aria-hidden="true"></div>
-          <!-- Devanagari watermark on hero -->
           <div class="hero__watermark" aria-hidden="true">एक साथ</div>
+          <button class="hero__arrow hero__arrow--prev" aria-label="Previous photo" data-dir="-1">‹</button>
+          <button class="hero__arrow hero__arrow--next" aria-label="Next photo" data-dir="1">›</button>
+          <div class="hero__dots" role="tablist">
+            <button class="hero__dot is-active" data-slide="0" aria-label="Photo 1"></button>
+            <button class="hero__dot" data-slide="1" aria-label="Photo 2"></button>
+            <button class="hero__dot" data-slide="2" aria-label="Photo 3"></button>
+          </div>
         </div>
       </div>
     </section>
@@ -128,6 +138,34 @@
         <span class="marquee__sep">·</span>
       </div>
     </div>
+
+    <!-- FEATURED DRINK SPOTLIGHT -->
+    <section class="featured" aria-labelledby="featured-title">
+      <div class="container featured__inner reveal">
+        <div class="featured__photo">
+          <img src="assets/gallery/05-latte.jpg" alt="A glass of matcha latte on a wood table" loading="lazy">
+        </div>
+        <div class="featured__content">
+          <div class="label">This week we're brewing</div>
+          <h2 id="featured-title" class="heading-serif featured__title">Hojicha Latte.</h2>
+          <p class="featured__desc">
+            Roasted Japanese green tea, whisked into milk warmed just enough to bring out
+            the smoke. A house special — limited run. Try it before it&rsquo;s gone.
+          </p>
+          <div class="featured__meta">
+            <div>
+              <div class="label">Style</div>
+              <div class="featured__meta-val">Smoky · creamy</div>
+            </div>
+            <div>
+              <div class="label">From</div>
+              <div class="featured__meta-val">Kyoto, Japan</div>
+            </div>
+          </div>
+          <a class="btn btn-primary featured__cta" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20try%20the%20Hojicha%20Latte">Order on WhatsApp →</a>
+        </div>
+      </div>
+    </section>
 
     <!-- STORY -->
     <section class="story section" id="story">
@@ -182,6 +220,45 @@
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- OUR ROASTERS -->
+    <section class="roasters" aria-labelledby="roasters-title">
+      <div class="container roasters__inner reveal">
+        <div class="roasters__head">
+          <div>
+            <div class="label" style="color:var(--terracotta)">The bean</div>
+            <h2 id="roasters-title" class="heading-serif roasters__title">
+              We pull from the best roasters<br>in India.
+            </h2>
+          </div>
+          <p class="roasters__sub">
+            Our beans rotate seasonally. Ask the barista what&rsquo;s on bar today.
+          </p>
+        </div>
+        <div class="roasters__grid">
+          <article class="roaster">
+            <div class="roaster__from">Bangalore</div>
+            <div class="roaster__name">Subko</div>
+            <p class="roaster__note">Single-origin Indian micro-lots, lightly roasted.</p>
+          </article>
+          <article class="roaster">
+            <div class="roaster__from">Mumbai</div>
+            <div class="roaster__name">Blue Tokai</div>
+            <p class="roaster__note">Estate-grown, traceable beans from Indian farms.</p>
+          </article>
+          <article class="roaster">
+            <div class="roaster__from">Pune</div>
+            <div class="roaster__name">Roastery Coffee</div>
+            <p class="roaster__note">Direct-trade beans, expressive light roasts.</p>
+          </article>
+          <article class="roaster">
+            <div class="roaster__from">Chikmagalur</div>
+            <div class="roaster__name">Third Wave</div>
+            <p class="roaster__note">Specialty roasters with deep Indian roots.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -420,7 +497,43 @@
       </div>
     </section>
 
+    <!-- NEWSLETTER -->
+    <section class="news" aria-labelledby="news-title">
+      <div class="container news__inner reveal">
+        <div class="label">No spam. Just good news.</div>
+        <h2 id="news-title" class="heading-serif news__title">Be the first to know what we&rsquo;re brewing.</h2>
+        <p class="news__sub">
+          One email a month. New menu items, special evenings, late-night experiments.
+          That&rsquo;s it.
+        </p>
+        <form class="news__form" id="news-form" onsubmit="return handleNewsletter(event)">
+          <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+          <button type="submit" class="btn btn-primary">Join</button>
+        </form>
+        <div class="news__perks" aria-hidden="true">
+          <span>✓ Monthly only</span>
+          <span>✓ Unsubscribe anytime</span>
+          <span>✓ Subscriber-only specials</span>
+        </div>
+        <div class="news__success" id="news-success" hidden>
+          Thanks! We&rsquo;ll WhatsApp/email when there&rsquo;s news worth sharing.
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- STICKY MOBILE ORDER BAR — only shows below 720px -->
+  <div class="mobile-bar" aria-label="Quick order actions">
+    <a class="mobile-bar__btn mobile-bar__wa" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.14-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.76.45 3.41 1.25 4.85L2 22l5.25-1.37A9.95 9.95 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.51 0-2.91-.4-4.13-1.1l-.3-.17-3.12.81.83-3.04-.2-.31A7.96 7.96 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+      WhatsApp
+    </a>
+    <a class="mobile-bar__btn mobile-bar__call" href="tel:+918109800010">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+      Call
+    </a>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -462,6 +575,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=3" defer></script>
+  <script src="script.js?v=4" defer></script>
 </body>
 </html>

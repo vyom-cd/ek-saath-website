@@ -115,4 +115,58 @@
       openNow.classList.add('is-closed');
     }
   }
+
+  // ===== Hero carousel (Component 9) =====
+  const carousel = document.getElementById('hero-carousel');
+  if (carousel) {
+    const slides = carousel.querySelectorAll('.hero__photo');
+    const dots = carousel.querySelectorAll('.hero__dot');
+    const arrows = carousel.querySelectorAll('.hero__arrow');
+    let idx = 0;
+    let timer;
+
+    const goTo = (n) => {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    };
+
+    const startAuto = () => {
+      stopAuto();
+      timer = setInterval(() => goTo(idx + 1), 6000);
+    };
+    const stopAuto = () => { if (timer) clearInterval(timer); };
+
+    dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); stopAuto(); startAuto(); }));
+    arrows.forEach((a) => a.addEventListener('click', () => {
+      goTo(idx + parseInt(a.dataset.dir, 10));
+      stopAuto(); startAuto();
+    }));
+
+    // Pause on hover for accessibility
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+
+    // Respect reduced motion
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) startAuto();
+  }
 })();
+
+// ===== Newsletter (Component 8) — opens WhatsApp with the email =====
+function handleNewsletter(e) {
+  e.preventDefault();
+  const form = e.target;
+  const email = form.email.value.trim();
+  if (!email) return false;
+  const success = document.getElementById('news-success');
+  if (success) {
+    success.hidden = false;
+    form.style.display = 'none';
+  }
+  // Optional: open WhatsApp with the email so owner has a record
+  const msg = encodeURIComponent(`Hi! Add me to the Ek Saath newsletter. Email: ${email}`);
+  // Open in new tab so user keeps the success message in view
+  window.open(`https://wa.me/918109800010?text=${msg}`, '_blank', 'noopener');
+  return false;
+}
