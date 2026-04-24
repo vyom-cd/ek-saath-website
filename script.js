@@ -141,7 +141,7 @@
 
     const startAuto = () => {
       stopAuto();
-      timer = setInterval(() => goTo(idx + 1), 6000);
+      timer = setInterval(() => goTo(idx + 1), 3000);
     };
     const stopAuto = () => { if (timer) clearInterval(timer); };
 

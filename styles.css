@@ -396,7 +396,7 @@ body.js-ready .reveal.is-visible {
   object-fit: cover;
   opacity: 0;
   transform: scale(1.04);
-  transition: opacity 1.4s var(--ease-out-expo), transform 12s var(--ease-out-expo);
+  transition: opacity 700ms var(--ease-out-expo), transform 6s var(--ease-out-expo);
   filter: saturate(0.95);
 }
 
@@ -1331,7 +1331,7 @@ a:focus-visible { outline-offset: 4px; }
   border-radius: 999px;
 }
 
-/* Animated progress bar inside active dot */
+/* Animated progress bar inside active dot — matches auto-rotate interval */
 .hero__dot.is-active::after {
   content: '';
   position: absolute;
@@ -1339,7 +1339,7 @@ a:focus-visible { outline-offset: 4px; }
   background: var(--cream);
   border-radius: inherit;
   transform-origin: left;
-  animation: dot-progress 6s linear forwards;
+  animation: dot-progress 3s linear forwards;
 }
 
 @keyframes dot-progress {
