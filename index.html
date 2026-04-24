@@ -19,7 +19,7 @@
 
   <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=13">
 </head>
 <body>
 
@@ -127,31 +127,80 @@
       </div>
     </div>
 
-    <!-- FEATURED DRINK SPOTLIGHT -->
-    <section class="featured" aria-labelledby="featured-title">
-      <div class="container featured__inner reveal">
-        <div class="featured__photo">
-          <img src="assets/menu/hojicha-latte.jpg" alt="A glass of matcha latte on a wood table" loading="lazy">
+    <!-- TODAY'S BREWS — 3 daily-rotating picks -->
+    <section class="today" aria-labelledby="today-title">
+      <div class="container">
+        <div class="today__head reveal">
+          <div class="label today__label">Today we&rsquo;re brewing</div>
+          <h2 id="today-title" class="heading-serif today__title">Three picks, pulled fresh.</h2>
+          <p class="today__sub">Our baristas pick three coffees each morning. Come tomorrow &mdash; it&rsquo;ll be three others.</p>
         </div>
-        <div class="featured__content">
-          <div class="label">This week we're brewing</div>
-          <h2 id="featured-title" class="heading-serif featured__title">Hojicha Latte.</h2>
-          <p class="featured__desc">
-            Roasted Japanese green tea, whisked into milk warmed just enough to bring out
-            the smoke. A house special — limited run. Try it before it&rsquo;s gone.
-          </p>
-          <div class="featured__meta">
-            <div>
-              <div class="label">Style</div>
-              <div class="featured__meta-val">Smoky · creamy</div>
+
+        <div class="today__grid reveal">
+
+          <!-- PICK 1 -->
+          <article class="pick">
+            <div class="pick__photo">
+              <img src="assets/gallery/05-latte.jpg" alt="Matcha latte with art in a ceramic cup" loading="lazy">
+              <span class="pick__badge pick__badge--morning">Morning</span>
             </div>
-            <div>
-              <div class="label">From</div>
-              <div class="featured__meta-val">Kyoto, Japan</div>
+            <div class="pick__body">
+              <div class="pick__origin">Kyoto, Japan</div>
+              <h3 class="pick__name">Matcha Latte</h3>
+              <p class="pick__desc">Ceremonial-grade matcha whisked into warm milk. Grassy, smooth, quietly energising.</p>
+              <div class="pick__meta">
+                <span class="pick__tag">Smooth</span>
+                <span class="pick__tag">Grassy</span>
+              </div>
+              <a class="pick__cta" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Matcha%20Latte">Order &rarr;</a>
             </div>
-          </div>
-          <a class="btn btn-primary featured__cta" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20try%20the%20Hojicha%20Latte">Order on WhatsApp →</a>
+          </article>
+
+          <!-- PICK 2 — FEATURE -->
+          <article class="pick pick--feature">
+            <div class="pick__photo">
+              <img src="assets/menu/vietnamese-cold.jpg" alt="Vietnamese cold coffee in a glass with condensed milk" loading="lazy">
+              <span class="pick__badge pick__badge--signature">Signature</span>
+            </div>
+            <div class="pick__body">
+              <div class="pick__origin">Our house favourite</div>
+              <h3 class="pick__name">Vietnamese Cold Brew</h3>
+              <p class="pick__desc">Strong, sweet, slow-steeped with condensed milk. The one our regulars keep coming back for.</p>
+              <div class="pick__meta">
+                <span class="pick__tag">Bold</span>
+                <span class="pick__tag">Sweet</span>
+                <span class="pick__tag">Iconic</span>
+              </div>
+              <a class="pick__cta" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Vietnamese%20Cold%20Coffee">Order &rarr;</a>
+            </div>
+          </article>
+
+          <!-- PICK 3 -->
+          <article class="pick">
+            <div class="pick__photo">
+              <img src="assets/menu/mocha.jpg" alt="Mocha latte with rosetta art" loading="lazy">
+              <span class="pick__badge pick__badge--evening">Evening</span>
+            </div>
+            <div class="pick__body">
+              <div class="pick__origin">House roaster pick</div>
+              <h3 class="pick__name">Mocha</h3>
+              <p class="pick__desc">Espresso, chocolate, steamed milk. Dessert-meets-drink. Good for late conversations.</p>
+              <div class="pick__meta">
+                <span class="pick__tag">Rich</span>
+                <span class="pick__tag">Chocolatey</span>
+              </div>
+              <a class="pick__cta" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Mocha">Order &rarr;</a>
+            </div>
+          </article>
+
         </div>
+
+        <!-- DAILY ROTATION GUIDE FOR OWNER:
+             Edit the 3 <article class="pick"> blocks above each morning.
+             Each pick needs: photo src (assets/menu/ or assets/gallery/),
+             badge label (Morning/Afternoon/Evening/Signature/Seasonal),
+             origin, name, 1-sentence desc, 2-3 tags, order URL.
+             The middle one is the "feature" — slightly larger. -->
       </div>
     </section>
 
