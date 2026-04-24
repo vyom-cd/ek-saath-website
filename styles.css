@@ -1225,33 +1225,72 @@ a:focus-visible { outline-offset: 4px; }
 
 .hero__dots {
   position: absolute;
-  bottom: 1rem;
+  bottom: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: 10px;
   z-index: 3;
+  padding: 8px 14px;
+  background: rgba(43, 30, 20, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .hero__dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: rgba(244, 237, 224, 0.5);
+  background: rgba(244, 237, 224, 0.45);
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: width var(--duration-normal), background var(--duration-fast);
+  transition: width 500ms var(--ease-out-expo), background var(--duration-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__dot:hover {
+  background: rgba(244, 237, 224, 0.75);
 }
 
 .hero__dot.is-active {
+  background: rgba(244, 237, 224, 0.35);
+  width: 44px;
+  border-radius: 999px;
+}
+
+/* Animated progress bar inside active dot */
+.hero__dot.is-active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--cream);
-  width: 24px;
-  border-radius: 4px;
+  border-radius: inherit;
+  transform-origin: left;
+  animation: dot-progress 6s linear forwards;
+}
+
+@keyframes dot-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Pause progress animation when parent is hovered */
+.hero__visual:hover .hero__dot.is-active::after {
+  animation-play-state: paused;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero__dot.is-active::after { animation: none; background: var(--cream); }
 }
 
 @media (max-width: 880px) {
   .hero__arrow { opacity: 1; width: 36px; height: 36px; }
+  .hero__dots { bottom: 0.875rem; }
 }
 
 /* ==========================================================================

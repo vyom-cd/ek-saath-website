@@ -128,7 +128,15 @@
     const goTo = (n) => {
       idx = (n + slides.length) % slides.length;
       slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
-      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+      // Reset active dot to restart progress animation
+      dots.forEach((d, i) => {
+        d.classList.remove('is-active');
+        if (i === idx) {
+          // Force reflow then add class — resets the CSS animation
+          void d.offsetWidth;
+          d.classList.add('is-active');
+        }
+      });
     };
 
     const startAuto = () => {
