@@ -116,6 +116,26 @@
     }
   }
 
+  // ===== Roaster flip cards — tap to flip on touch devices =====
+  const roasters = document.querySelectorAll('.roaster');
+  roasters.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      // Only toggle on touch / no-hover devices; mouse users get hover
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+      if (!hasHover) {
+        e.preventDefault();
+        card.classList.toggle('is-flipped');
+      }
+    });
+    // Keyboard: Enter / Space toggles flip
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.classList.toggle('is-flipped');
+      }
+    });
+  });
+
   // ===== Hero carousel (Component 9) =====
   const carousel = document.getElementById('hero-carousel');
   if (carousel) {
