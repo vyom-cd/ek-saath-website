@@ -151,10 +151,6 @@
       stopAuto(); startAuto();
     }));
 
-    // Pause on hover for accessibility
-    carousel.addEventListener('mouseenter', stopAuto);
-    carousel.addEventListener('mouseleave', startAuto);
-
     // Respect reduced motion
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!prefersReduced) startAuto();

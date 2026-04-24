@@ -602,7 +602,7 @@ body.js-ready .reveal.is-visible {
   to   { transform: translateX(-50%); }
 }
 
-.marquee:hover .marquee__track { animation-play-state: paused; }
+/* marquee keeps scrolling — no pause on hover */
 
 /* ==========================================================================
    Story
