@@ -1756,13 +1756,51 @@ a:focus-visible { outline-offset: 4px; }
 }
 
 /* ==========================================================================
-   Brewing methods (editorial section between Roasters and Menu)
+   Brewing methods — editorial section with texture + decorative rail
    ========================================================================== */
 
 .brewing {
-  background: var(--cream-soft);
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(139, 90, 60, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 100%, rgba(107, 122, 62, 0.04) 0%, transparent 50%),
+    var(--cream-soft);
   padding: var(--space-section) 0;
   position: relative;
+  overflow: hidden;
+}
+
+/* Paper grain overlay */
+.brewing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/></svg>");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Vertical decorative rail — runs down the left edge */
+.brewing__rail {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left top;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--terracotta);
+  opacity: 0.5;
+  white-space: nowrap;
+  pointer-events: none;
+  display: none;
+  z-index: 1;
+}
+
+@media (min-width: 1200px) {
+  .brewing__rail { display: block; }
 }
 
 .brewing__head {
@@ -1794,6 +1832,8 @@ a:focus-visible { outline-offset: 4px; }
   grid-template-columns: repeat(5, 1fr);
   gap: var(--space-2);
   margin-bottom: var(--space-4);
+  position: relative;
+  z-index: 1;
 }
 
 .brew {
@@ -1804,14 +1844,49 @@ a:focus-visible { outline-offset: 4px; }
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  transition: transform var(--duration-normal), box-shadow var(--duration-normal);
+  transition: transform 400ms var(--ease-out-expo),
+              box-shadow 400ms var(--ease-out-expo),
+              border-color 200ms;
   position: relative;
   overflow: hidden;
+  /* Left accent bar, invisible by default */
+  border-left: 3px solid var(--border);
+}
+
+.brew[data-num="01"] { border-left-color: #c85030; }     /* espresso red-brown */
+.brew[data-num="02"] { border-left-color: #6b7a3e; }     /* v60 olive */
+.brew[data-num="03"] { border-left-color: #8b5a3c; }     /* aeropress terracotta */
+.brew[data-num="04"] { border-left-color: #2b1e14; }     /* french press espresso */
+.brew[data-num="05"] { border-left-color: var(--terracotta); } /* cold brew signature */
+
+/* Giant ghost number, upper right of each card */
+.brew::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -18px;
+  right: 8px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 8rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--espresso);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 400ms, transform 400ms;
 }
 
 .brew:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow);
+  border-color: var(--terracotta);
+}
+
+.brew:hover::before {
+  opacity: 0.12;
+  transform: translate(-6px, 4px);
 }
 
 .brew__icon {
@@ -1819,6 +1894,11 @@ a:focus-visible { outline-offset: 4px; }
   height: 40px;
   color: var(--terracotta);
   margin-bottom: 0.25rem;
+  transition: transform 400ms var(--ease-out-expo);
+}
+
+.brew:hover .brew__icon {
+  transform: scale(1.15) rotate(-5deg);
 }
 
 .brew__from {
@@ -1843,18 +1923,29 @@ a:focus-visible { outline-offset: 4px; }
   font-style: italic;
   color: var(--terracotta);
   line-height: 1;
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed rgba(139, 90, 60, 0.25);
 }
 
 .brew__time-num {
-  font-size: 2rem;
+  font-size: 2.75rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .brew__time-unit {
   font-size: 0.875rem;
   margin-left: 0.2rem;
-  opacity: 0.8;
+  opacity: 0.6;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-style: normal;
+  font-family: var(--font-sans);
 }
 
 .brew__desc {
@@ -1884,19 +1975,29 @@ a:focus-visible { outline-offset: 4px; }
 
 /* Feature card — cold brew signature */
 .brew--feature {
-  background: var(--espresso);
+  background:
+    linear-gradient(145deg, #3d2817 0%, var(--espresso) 100%);
   color: var(--cream);
-  border-color: var(--espresso);
-  grid-row: span 1;
-  position: relative;
+  border-color: transparent;
+  border-left: 3px solid var(--terracotta);
+  box-shadow: 0 8px 32px rgba(43, 30, 20, 0.2);
+}
+
+.brew--feature::before { color: var(--cream); opacity: 0.07; }
+.brew--feature:hover::before { opacity: 0.16; }
+
+.brew--feature:hover {
+  box-shadow: 0 16px 48px rgba(43, 30, 20, 0.35);
+  border-color: transparent;
+  border-left-color: var(--terracotta);
 }
 
 .brew--feature .brew__icon { color: var(--terracotta); }
-.brew--feature .brew__from { color: rgba(244, 237, 224, 0.6); }
+.brew--feature .brew__from { color: rgba(244, 237, 224, 0.55); }
 .brew--feature .brew__name { color: var(--cream); }
-.brew--feature .brew__time { color: var(--terracotta); }
-.brew--feature .brew__desc { color: rgba(244, 237, 224, 0.75); }
-.brew--feature .brew__tag { background: rgba(244, 237, 224, 0.1); color: var(--cream); }
+.brew--feature .brew__time { color: var(--terracotta); border-bottom-color: rgba(139, 90, 60, 0.4); }
+.brew--feature .brew__desc { color: rgba(244, 237, 224, 0.78); }
+.brew--feature .brew__tag { background: rgba(244, 237, 224, 0.08); color: var(--cream); border: 1px solid rgba(244, 237, 224, 0.15); }
 
 .brew__badge {
   display: inline-block;

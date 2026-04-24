@@ -19,7 +19,7 @@
 
   <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
 
@@ -301,6 +301,7 @@
 
     <!-- BREWING METHODS -->
     <section class="brewing" aria-labelledby="brewing-title">
+      <div class="brewing__rail" aria-hidden="true">BREW GUIDE · एक साथ · BREW GUIDE · एक साथ</div>
       <div class="container">
         <div class="brewing__head reveal">
           <div class="label">The craft</div>
@@ -313,9 +314,9 @@
           </p>
         </div>
 
-        <div class="brewing__grid reveal">
+        <div class="brewing__grid reveal" data-count="5">
 
-          <article class="brew">
+          <article class="brew" data-num="01">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- Espresso cup with handle + steam -->
               <path d="M12 22 L36 22 L33 40 L15 40 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -337,7 +338,7 @@
             </div>
           </article>
 
-          <article class="brew">
+          <article class="brew" data-num="02">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- V60 cone -->
               <path d="M10 10 L38 10 L27 32 L21 32 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -360,7 +361,7 @@
             </div>
           </article>
 
-          <article class="brew">
+          <article class="brew" data-num="03">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- AeroPress cylinder with plunger -->
               <rect x="16" y="14" width="16" height="22" fill="none" stroke="currentColor" stroke-width="1.6" rx="1"/>
@@ -384,7 +385,7 @@
             </div>
           </article>
 
-          <article class="brew">
+          <article class="brew" data-num="04">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- French press — taller beaker -->
               <rect x="14" y="12" width="20" height="26" fill="none" stroke="currentColor" stroke-width="1.6" rx="1"/>
@@ -409,7 +410,7 @@
             </div>
           </article>
 
-          <article class="brew brew--feature">
+          <article class="brew brew--feature" data-num="05">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- Cold brew tall glass tower -->
               <path d="M16 12 L16 36 Q16 40 24 40 Q32 40 32 36 L32 12 Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -542,7 +543,7 @@
             </div>
           </article>
 
-          <article class="menu__item" data-category="matcha-tea" hidden><div class="menu__item-thumb"><img src="assets/menu/latte.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Hojicha Latte</h3><p>Roasted Japanese tea, smoky and smooth.</p></div><div class="menu__item-actions"><span class="menu__price">₹260</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Hojicha%20Latte">Order</a></div></article>
+          <article class="menu__item" data-category="matcha-tea" hidden><div class="menu__item-thumb"><img src="assets/gallery/05-latte.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Hojicha Latte</h3><p>Roasted Japanese tea, smoky and smooth.</p></div><div class="menu__item-actions"><span class="menu__price">₹260</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Hojicha%20Latte">Order</a></div></article>
           <article class="menu__item" data-category="matcha-tea" hidden><div class="menu__item-thumb"><img src="assets/menu/iced-tea.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Ek Saath Iced Tea</h3><p>Cold-brewed, lightly sweetened.</p></div><div class="menu__item-actions"><span class="menu__price">₹160</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20an%20Iced%20Tea">Order</a></div></article>
           <article class="menu__item" data-category="matcha-tea" hidden><div class="menu__item-thumb"><img src="assets/menu/hot-nutella.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Ek Saath Hot Chocolate</h3><p>Thick, real cocoa, proper winter energy.</p></div><div class="menu__item-actions"><span class="menu__price">₹200</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Hot%20Chocolate">Order</a></div></article>
 
@@ -569,7 +570,7 @@
           <!-- PASTA & MAINS -->
           <article class="menu__item" data-category="mains" hidden><div class="menu__item-thumb"><img src="assets/menu/penne-arrabbiata.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Penne Arrabbiata</h3><p>Spicy tomato, garlic, chilli, olive oil.</p></div><div class="menu__item-actions"><span class="menu__price">₹280</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Penne%20Arrabbiata">Order</a></div></article>
           <article class="menu__item" data-category="mains" hidden><div class="menu__item-thumb"><img src="assets/menu/alfredo-pasta.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Alfredo Pasta</h3><p>Creamy white sauce, parmesan, cracked pepper.</p></div><div class="menu__item-actions"><span class="menu__price">₹290</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Alfredo%20Pasta">Order</a></div></article>
-          <article class="menu__item" data-category="mains" hidden><div class="menu__item-thumb"><img src="assets/menu/alfredo-pasta.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Pesto Pasta</h3><p>House-made basil pesto, parmesan, olive oil.</p></div><div class="menu__item-actions"><span class="menu__price">₹290</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Pesto%20Pasta">Order</a></div></article>
+          <article class="menu__item" data-category="mains" hidden><div class="menu__item-thumb"><img src="assets/menu/penne-arrabbiata.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Pesto Pasta</h3><p>House-made basil pesto, parmesan, olive oil.</p></div><div class="menu__item-actions"><span class="menu__price">₹290</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20Pesto%20Pasta">Order</a></div></article>
           <article class="menu__item" data-category="mains" hidden><div class="menu__item-thumb"><img src="assets/menu/sourdough-toast.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Sourdough Open Toast</h3><p>House sourdough, seasonal toppings. Ask for today&rsquo;s.</p></div><div class="menu__item-actions"><span class="menu__price">₹240</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Sourdough%20Open%20Toast">Order</a></div></article>
           <article class="menu__item" data-category="mains" hidden><div class="menu__item-thumb"><img src="assets/menu/sourdough-sandwich.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Sourdough Sandwich</h3><p>Two slices, loaded right.</p></div><div class="menu__item-actions"><span class="menu__price">₹260</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Sourdough%20Sandwich">Order</a></div></article>
           <article class="menu__item" data-category="mains" hidden><div class="menu__item-thumb"><img src="assets/menu/wrap.jpg" alt="" loading="lazy"></div><div class="menu__item-text"><h3>Wrap</h3><p>Rolled, grilled, ready for now.</p></div><div class="menu__item-actions"><span class="menu__price">₹220</span><a class="menu__order" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Wrap">Order</a></div></article>
