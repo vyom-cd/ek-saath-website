@@ -81,7 +81,7 @@
     sections.forEach((s) => sectionObserver.observe(s));
   }
 
-  // ===== Open now chip =====
+  // ===== Open now chip — three states: open, closing soon, closed =====
   // Hours: every day, 11:00 - 23:59
   const openNow = document.getElementById('open-now');
   if (openNow) {
@@ -90,22 +90,29 @@
     const min = now.getMinutes();
     const isOpen = (hour >= 11 && hour < 23) || (hour === 23 && min < 59);
 
+    openNow.hidden = false;
+    const text = openNow.querySelector('.open-now__text');
+    const dot = openNow.querySelector('.open-now__dot');
+
     if (isOpen) {
-      openNow.hidden = false;
-      const text = openNow.querySelector('.open-now__text');
-      if (text) {
-        // Closes at midnight (effectively 23:59)
-        const minsUntilClose = (23 - hour) * 60 + (59 - min);
-        if (minsUntilClose < 60) {
-          text.textContent = `Closing soon · ${minsUntilClose}m`;
-          openNow.style.color = 'var(--terracotta)';
-          openNow.style.background = 'rgba(139, 90, 60, 0.12)';
-          const dot = openNow.querySelector('.open-now__dot');
-          if (dot) dot.style.background = 'var(--terracotta)';
-        } else {
-          text.textContent = 'Open now · Till midnight';
-        }
+      // Within open hours
+      const minsUntilClose = (23 - hour) * 60 + (59 - min);
+      if (minsUntilClose < 60) {
+        // Last hour
+        text.textContent = `Closing soon · ${minsUntilClose}m left`;
+        openNow.classList.add('is-closing');
+      } else {
+        text.textContent = 'Open now · Till midnight';
+        openNow.classList.add('is-open');
       }
+    } else {
+      // Closed — show when we open next
+      const nextOpenHour = (hour < 11) ? 11 : 11; // always 11 AM next day
+      const isMorning = hour < 11;
+      text.textContent = isMorning
+        ? `Closed · Opens ${nextOpenHour} AM`
+        : `Closed · Opens 11 AM tomorrow`;
+      openNow.classList.add('is-closed');
     }
   }
 })();

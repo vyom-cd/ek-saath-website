@@ -294,14 +294,12 @@ body.js-ready .reveal.is-visible {
   font-size: 0.875rem;
 }
 
-/* Open now chip */
+/* Open now chip — three states */
 .open-now {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.375rem 0.75rem 0.375rem 0.625rem;
-  background: rgba(107, 122, 62, 0.12);
-  color: var(--olive);
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -311,16 +309,47 @@ body.js-ready .reveal.is-visible {
 .open-now__dot {
   width: 7px;
   height: 7px;
-  background: var(--olive);
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(107, 122, 62, 0.7);
-  animation: pulse-dot 2s infinite;
 }
 
-@keyframes pulse-dot {
-  0% { box-shadow: 0 0 0 0 rgba(107, 122, 62, 0.5); }
-  70% { box-shadow: 0 0 0 8px rgba(107, 122, 62, 0); }
+/* OPEN — green, pulsing */
+.open-now.is-open {
+  background: rgba(107, 122, 62, 0.12);
+  color: var(--olive);
+}
+.open-now.is-open .open-now__dot {
+  background: var(--olive);
+  animation: pulse-open 2s infinite;
+}
+@keyframes pulse-open {
+  0%   { box-shadow: 0 0 0 0 rgba(107, 122, 62, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(107, 122, 62, 0); }
   100% { box-shadow: 0 0 0 0 rgba(107, 122, 62, 0); }
+}
+
+/* CLOSING SOON — terracotta */
+.open-now.is-closing {
+  background: rgba(139, 90, 60, 0.12);
+  color: var(--terracotta);
+}
+.open-now.is-closing .open-now__dot {
+  background: var(--terracotta);
+  animation: pulse-closing 1.2s infinite;
+}
+@keyframes pulse-closing {
+  0%   { box-shadow: 0 0 0 0 rgba(139, 90, 60, 0.5); }
+  70%  { box-shadow: 0 0 0 6px rgba(139, 90, 60, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(139, 90, 60, 0); }
+}
+
+/* CLOSED — neutral grey */
+.open-now.is-closed {
+  background: rgba(107, 93, 74, 0.12);
+  color: var(--muted);
+}
+.open-now.is-closed .open-now__dot {
+  background: var(--muted);
+  /* no pulse when closed */
 }
 
 @media (max-width: 960px) {
