@@ -457,3 +457,57 @@ function handleNewsletter(e) {
   window.open(`https://wa.me/918109800010?text=${msg}`, '_blank', 'noopener');
   return false;
 }
+
+// ===== Marginalia: draw-on when scribbles enter viewport =====
+(function () {
+  const scribbles = document.querySelectorAll('.scribble');
+  if (!scribbles.length) return;
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    scribbles.forEach((s) => s.classList.add('is-drawn'));
+    return;
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-drawn');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.35 });
+
+  scribbles.forEach((s) => obs.observe(s));
+
+  // Pizza tab can reveal a hidden scribble; nudge IO to recheck after tab change
+  document.querySelectorAll('.menu__tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      // Re-observe any not-yet-drawn scribbles inside the menu
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.menu .scribble:not(.is-drawn)').forEach((s) => {
+          obs.unobserve(s);
+          obs.observe(s);
+        });
+      });
+    });
+  });
+})();
+
+// ===== Origin map: pulse the city dot when its roaster card is hovered/focused =====
+(function () {
+  const cards = document.querySelectorAll('.roaster[data-city]');
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    const city = card.dataset.city;
+    const dot = document.querySelector('.city--' + city);
+    if (!dot) return;
+    const on = () => dot.classList.add('is-pulsing');
+    const off = () => dot.classList.remove('is-pulsing');
+    card.addEventListener('mouseenter', on);
+    card.addEventListener('mouseleave', off);
+    card.addEventListener('focus', on);
+    card.addEventListener('blur', off);
+  });
+})();

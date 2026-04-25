@@ -2546,3 +2546,280 @@ a:focus-visible { outline-offset: 4px; }
   .brew__name { font-size: 1.125rem; }
   .brew__time-num { font-size: 1.625rem; }
 }
+
+/* ==========================================================================
+   FEATURE 1 — Brew-time progress bar
+   Hairline bar fills along the bottom edge in real proportional time.
+   3 min (V60) ≈ 6s. Espresso (25s) → ~0.8s. Cold brew (18hrs) → ~36 min, only a sliver.
+   ========================================================================== */
+.brew::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--terracotta);
+  transition: width var(--duration-normal) ease-out;
+  pointer-events: none;
+  z-index: 2;
+}
+.brew:hover::after,
+.brew:focus-within::after,
+.brew:active::after {
+  width: 100%;
+  transition: width calc(var(--brew-seconds, 60) * 33.33ms) linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .brew::after,
+  .brew:hover::after,
+  .brew:focus-within::after,
+  .brew:active::after {
+    transition: none;
+  }
+  .brew:hover::after,
+  .brew:focus-within::after,
+  .brew:active::after { width: 30%; }
+}
+
+/* ==========================================================================
+   FEATURE 2 — Hand-drawn marginalia
+   Inline SVG scribbles. stroke-only, draw-on with stroke-dashoffset.
+   ========================================================================== */
+.scribble {
+  pointer-events: none;
+  color: var(--terracotta);
+}
+.scribble path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.scribble path[data-draw] {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  transition: stroke-dashoffset 1.3s var(--ease-out-expo);
+}
+.scribble.is-drawn path[data-draw] {
+  stroke-dashoffset: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scribble path[data-draw] {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
+
+/* Wonky wavy underline beneath "Vietnamese Cold Brew" */
+.scribble--underline {
+  display: block;
+  width: 100%;
+  height: 10px;
+  margin-top: 2px;
+  color: var(--terracotta-dark);
+}
+
+/* Imperfect oval around the 4.1 stat number */
+.stat { position: relative; }
+.stat__num { position: relative; z-index: 1; }
+.scribble--circle {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130%;
+  max-width: 180px;
+  height: 84px;
+  z-index: 0;
+  color: var(--terracotta);
+  opacity: 0.85;
+}
+
+/* Asterisk / star scribble next to Signature badge in pick #2 */
+.scribble--star {
+  position: absolute;
+  top: 8px;
+  left: 124px;
+  width: 28px;
+  height: 28px;
+  color: var(--terracotta);
+  z-index: 3;
+}
+.scribble--star path[data-draw] {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+/* "Try this" arrow scribble pointing at Farm House Pizza feature card */
+.menu__item--feature { position: relative; }
+.scribble-arrow {
+  position: absolute;
+  top: -56px;
+  left: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--terracotta-dark);
+  pointer-events: none;
+  z-index: 5;
+}
+.scribble-arrow__text {
+  display: inline-block;
+  transform: rotate(-6deg);
+  margin-bottom: 2px;
+}
+.scribble-arrow svg.scribble {
+  width: 30px;
+  height: 48px;
+  margin-left: 18px;
+  color: var(--terracotta-dark);
+}
+
+@media (max-width: 720px) {
+  .scribble--circle { display: none; }
+  .scribble-arrow { display: none; }
+  .scribble--star { left: 110px; top: 6px; width: 24px; height: 24px; }
+}
+
+/* ==========================================================================
+   FEATURE 3 — Polaroid gallery
+   Each photo as a printed snapshot pinned to a wall — white border,
+   slight rotation, hand-drawn caption in Caveat.
+   ========================================================================== */
+.gallery__bento {
+  /* Extra room so rotated polaroids don't clip neighbours */
+  padding: 16px 0 28px;
+  overflow: visible;
+}
+.bento {
+  background: #fff;
+  border-radius: 4px;
+  padding: 12px 12px 36px;
+  overflow: visible;
+  box-shadow: 0 8px 24px rgba(43, 30, 20, 0.18);
+  transform-origin: center bottom;
+  transition: transform 250ms var(--ease-out-expo),
+              box-shadow 250ms var(--ease-out-expo);
+}
+.bento:nth-child(1) { transform: rotate(-3deg); }
+.bento:nth-child(2) { transform: rotate(2deg); }
+.bento:nth-child(3) { transform: rotate(-2deg); }
+.bento:nth-child(4) { transform: rotate(3deg); }
+.bento:nth-child(5) { transform: rotate(-1deg); }
+.bento:nth-child(6) { transform: rotate(2deg); }
+.bento:hover,
+.bento:focus-within {
+  transform: rotate(0deg) translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(43, 30, 20, 0.28);
+  z-index: 2;
+}
+.bento img {
+  border-radius: 2px;
+}
+/* Caption sits in the bottom white strip, in Caveat handwriting, slightly tilted */
+.bento figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 36px;
+  padding: 0 14px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: 0.01em;
+  color: var(--espresso);
+  opacity: 1;
+  transform: rotate(-1.5deg);
+  transition: transform 250ms var(--ease-out-expo);
+  z-index: 1;
+}
+.bento:hover figcaption,
+.bento:focus-within figcaption {
+  transform: rotate(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bento { transform: none; transition: none; }
+  .bento:hover, .bento:focus-within { transform: translateY(-2px); }
+  .bento figcaption { transform: none; }
+}
+@media (max-width: 720px) {
+  .bento { padding: 8px 8px 30px; }
+  .bento figcaption { height: 30px; font-size: 0.95rem; }
+}
+
+/* ==========================================================================
+   FEATURE 4 — Origin map for roasters
+   Stippled India silhouette, low-contrast watermark with 4 city dots.
+   ========================================================================== */
+.roasters__map {
+  position: absolute;
+  top: 50%;
+  right: 3%;
+  transform: translateY(-50%);
+  width: 220px;
+  height: 290px;
+  z-index: 0;
+  opacity: 0.95;
+  pointer-events: none;
+}
+.roasters__map svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+.city {
+  fill: var(--terracotta);
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+              filter var(--duration-normal);
+  filter: drop-shadow(0 0 3px rgba(139, 90, 60, 0.5));
+}
+.city.is-pulsing {
+  animation: cityPulse 1.4s var(--ease-out-expo) infinite;
+}
+@keyframes cityPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px rgba(139, 90, 60, 0.5));
+  }
+  50% {
+    transform: scale(1.6);
+    filter: drop-shadow(0 0 14px rgba(228, 162, 77, 0.95));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .city.is-pulsing {
+    animation: none;
+    transform: scale(1.35);
+    filter: drop-shadow(0 0 8px rgba(228, 162, 77, 0.85));
+  }
+}
+@media (max-width: 1024px) {
+  .roasters__map {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    width: 100%;
+    max-width: 320px;
+    height: 200px;
+    margin: 0 auto var(--space-3);
+  }
+}
+@media (max-width: 720px) {
+  .roasters__map { display: none; }
+}

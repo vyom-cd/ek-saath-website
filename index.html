@@ -15,11 +15,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 
   <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=30">
+  <link rel="stylesheet" href="styles.css?v=33">
 </head>
 <body>
 
@@ -184,6 +184,7 @@
 
           <!-- PICK 2 — FEATURE, rotates daily via JS -->
           <article class="pick pick--feature" id="pick-2">
+            <svg class="scribble scribble--star" viewBox="0 0 28 28" aria-hidden="true"><path data-draw d="M 14 3 L 14 25 M 3 14 L 25 14 M 6 6 L 22 22 M 22 6 L 6 22" stroke-width="2" /></svg>
             <div class="pick__photo">
               <img src="assets/menu/vietnamese-cold.jpg" alt="Vietnamese cold coffee in a glass with condensed milk" loading="lazy">
               <span class="pick__badge pick__badge--signature">Signature</span>
@@ -269,7 +270,7 @@
           <div class="story__meta">
             <div>
               <div class="label">Signature</div>
-              <div class="story__meta-value">Vietnamese Cold Brew</div>
+              <div class="story__meta-value">Vietnamese Cold Brew<svg class="scribble scribble--underline" viewBox="0 0 200 12" aria-hidden="true" preserveAspectRatio="none"><path data-draw d="M3 7 Q 22 1, 44 6 T 88 7 T 132 5 T 174 8 T 197 6" stroke-width="2.4" /></svg></div>
             </div>
             <div>
               <div class="label">Roasters</div>
@@ -299,8 +300,27 @@
             Our beans rotate seasonally. Ask the barista what&rsquo;s on bar today.
           </p>
         </div>
+        <div class="roasters__map" aria-hidden="true">
+          <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="ek-stipple" x="0" y="0" width="9" height="9" patternUnits="userSpaceOnUse">
+                <circle cx="4.5" cy="4.5" r="1.1" fill="rgba(244,237,224,0.55)"/>
+              </pattern>
+            </defs>
+            <!-- India silhouette, abstracted -->
+            <path d="M 100 14 L 156 10 L 198 18 L 232 32 L 252 56 L 268 84 L 284 112 L 286 138 L 256 152 L 240 174 L 232 200 L 222 232 L 214 262 L 200 296 L 178 332 L 156 364 L 134 392 L 122 396 L 110 372 L 96 338 L 80 304 L 66 272 L 50 236 L 34 198 L 22 168 L 30 142 L 56 132 L 70 118 L 64 92 L 76 60 L 90 32 Z"
+                  fill="url(#ek-stipple)" stroke="rgba(244,237,224,0.35)" stroke-width="1" stroke-dasharray="2 4"/>
+            <!-- Roaster city dots -->
+            <g class="cities">
+              <circle class="city city--mumbai" cx="50" cy="236" r="4.5"/>
+              <circle class="city city--pune" cx="62" cy="244" r="4.5"/>
+              <circle class="city city--chikmagalur" cx="80" cy="322" r="4.5"/>
+              <circle class="city city--bangalore" cx="99" cy="327" r="4.5"/>
+            </g>
+          </svg>
+        </div>
         <div class="roasters__grid">
-          <article class="roaster" tabindex="0" aria-label="Subko from Bangalore. Tap to see tasting notes.">
+          <article class="roaster" tabindex="0" data-city="bangalore" aria-label="Subko from Bangalore. Tap to see tasting notes.">
             <div class="roaster__inner">
               <div class="roaster__face roaster__face--front">
                 <div class="roaster__photo"><img src="assets/roasters/subko.jpg" alt="" loading="lazy"></div>
@@ -322,7 +342,7 @@
             </div>
           </article>
 
-          <article class="roaster" tabindex="0" aria-label="Blue Tokai from Mumbai. Tap to see tasting notes.">
+          <article class="roaster" tabindex="0" data-city="mumbai" aria-label="Blue Tokai from Mumbai. Tap to see tasting notes.">
             <div class="roaster__inner">
               <div class="roaster__face roaster__face--front">
                 <div class="roaster__photo"><img src="assets/roasters/blue-tokai.jpg" alt="" loading="lazy"></div>
@@ -344,7 +364,7 @@
             </div>
           </article>
 
-          <article class="roaster" tabindex="0" aria-label="Roastery Coffee from Pune. Tap to see tasting notes.">
+          <article class="roaster" tabindex="0" data-city="pune" aria-label="Roastery Coffee from Pune. Tap to see tasting notes.">
             <div class="roaster__inner">
               <div class="roaster__face roaster__face--front">
                 <div class="roaster__photo"><img src="assets/roasters/roastery.jpg" alt="" loading="lazy"></div>
@@ -366,7 +386,7 @@
             </div>
           </article>
 
-          <article class="roaster" tabindex="0" aria-label="Third Wave from Chikmagalur. Tap to see tasting notes.">
+          <article class="roaster" tabindex="0" data-city="chikmagalur" aria-label="Third Wave from Chikmagalur. Tap to see tasting notes.">
             <div class="roaster__inner">
               <div class="roaster__face roaster__face--front">
                 <div class="roaster__photo"><img src="assets/roasters/third-wave.jpg" alt="" loading="lazy"></div>
@@ -404,6 +424,7 @@
         </div>
         <div class="stat">
           <div class="stat__num" data-target="4.1" data-decimals="1">0</div>
+          <svg class="scribble scribble--circle" viewBox="0 0 140 90" aria-hidden="true" preserveAspectRatio="none"><path data-draw d="M 22 48 Q 14 18, 56 12 Q 102 8, 124 38 Q 134 70, 88 80 Q 30 86, 18 56 Q 14 42, 24 36" stroke-width="1.8" /></svg>
           <div class="stat__label">Average rating ★</div>
         </div>
         <div class="stat">
@@ -441,7 +462,7 @@
 
         <div class="brewing__grid reveal" data-count="5">
 
-          <article class="brew" data-num="01">
+          <article class="brew" data-num="01" data-seconds="25" style="--brew-seconds: 25;" tabindex="0">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- Espresso cup with handle + steam -->
               <path d="M12 22 L36 22 L33 40 L15 40 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -463,7 +484,7 @@
             </div>
           </article>
 
-          <article class="brew" data-num="02">
+          <article class="brew" data-num="02" data-seconds="180" style="--brew-seconds: 180;" tabindex="0">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- V60 cone -->
               <path d="M10 10 L38 10 L27 32 L21 32 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -486,7 +507,7 @@
             </div>
           </article>
 
-          <article class="brew" data-num="03">
+          <article class="brew" data-num="03" data-seconds="90" style="--brew-seconds: 90;" tabindex="0">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- AeroPress cylinder with plunger -->
               <rect x="16" y="14" width="16" height="22" fill="none" stroke="currentColor" stroke-width="1.6" rx="1"/>
@@ -510,7 +531,7 @@
             </div>
           </article>
 
-          <article class="brew" data-num="04">
+          <article class="brew" data-num="04" data-seconds="240" style="--brew-seconds: 240;" tabindex="0">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- French press — taller beaker -->
               <rect x="14" y="12" width="20" height="26" fill="none" stroke="currentColor" stroke-width="1.6" rx="1"/>
@@ -535,7 +556,7 @@
             </div>
           </article>
 
-          <article class="brew brew--feature" data-num="05">
+          <article class="brew brew--feature" data-num="05" data-seconds="64800" style="--brew-seconds: 64800;" tabindex="0">
             <svg class="brew__icon" viewBox="0 0 48 48" aria-hidden="true">
               <!-- Cold brew tall glass tower -->
               <path d="M16 12 L16 36 Q16 40 24 40 Q32 40 32 36 L32 12 Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -691,6 +712,10 @@
 
           <!-- PIZZA -->
           <article class="menu__item menu__item--feature" data-category="pizza" hidden>
+            <div class="scribble-arrow" aria-hidden="true">
+              <span class="scribble-arrow__text">try this</span>
+              <svg class="scribble scribble--arrow" viewBox="0 0 40 60" aria-hidden="true"><path data-draw d="M 24 4 Q 8 18, 12 42 L 8 52 L 18 46 M 12 52 L 22 56" stroke-width="1.8" /></svg>
+            </div>
             <div class="menu__item-media">
               <img src="assets/menu/farmhouse-pizza.jpg" alt="" loading="lazy">
             </div>
@@ -912,6 +937,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=32" defer></script>
+  <script src="script.js?v=33" defer></script>
 </body>
 </html>
