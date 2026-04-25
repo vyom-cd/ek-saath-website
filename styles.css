@@ -753,16 +753,43 @@ body.js-ready .reveal.is-visible {
 
 .menu .container { position: relative; z-index: 1; }
 
-/* Recolor menu heading + note for the dark chocolate bg */
-.menu__title { color: var(--cream); }
-.menu__note { color: rgba(244, 237, 224, 0.75); }
-.menu__pending { background: rgba(244, 237, 224, 0.92); color: #78350f; }
-.menu__tabs { border-bottom-color: rgba(244, 237, 224, 0.18); }
-.menu__tab { color: rgba(244, 237, 224, 0.55); }
-.menu__tab:hover { color: var(--cream); }
-.menu__tab.is-active { color: var(--cream); border-bottom-color: var(--terracotta); }
-.menu__full-note { color: rgba(244, 237, 224, 0.65); }
-.menu__full-note a { color: var(--cream); }
+/* Recolor menu heading + note for the dark chocolate bg, with stronger contrast */
+.menu .menu__header {
+  background: rgba(244, 237, 224, 0.05);
+  border: 1px solid rgba(244, 237, 224, 0.15);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  max-width: none;
+}
+.menu .menu__header .label { color: var(--terracotta); }
+.menu .menu__title { color: var(--cream) !important; }
+.menu .menu__note { color: rgba(244, 237, 224, 0.78); }
+.menu .menu__pending { background: rgba(254, 243, 199, 0.95); color: #78350f; }
+
+/* Tabs — wrap in their own card so they're visibly framed */
+.menu .menu__tabs {
+  background: rgba(244, 237, 224, 0.04);
+  border: 1px solid rgba(244, 237, 224, 0.12);
+  border-radius: 999px;
+  padding: 4px;
+  margin: var(--space-3) 0 var(--space-4);
+  gap: 0;
+}
+.menu .menu__tab {
+  color: rgba(244, 237, 224, 0.65);
+  border-bottom: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  transition: background 200ms, color 200ms;
+}
+.menu .menu__tab:hover { color: var(--cream); background: rgba(244, 237, 224, 0.08); }
+.menu .menu__tab.is-active {
+  color: white;
+  background: var(--terracotta);
+  font-weight: 600;
+}
+.menu .menu__full-note { color: rgba(244, 237, 224, 0.65); }
+.menu .menu__full-note a { color: var(--cream); border-bottom: 1px solid rgba(244,237,224,0.4); }
 
 .menu__header { max-width: 50rem; margin-bottom: var(--space-5); position: relative; z-index: 1; }
 .menu__title { font-size: var(--text-h2); margin: var(--space-2) 0 var(--space-2); }
