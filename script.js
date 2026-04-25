@@ -175,6 +175,83 @@
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!prefersReduced) startAuto();
   }
+
+  // ===== Today's three picks — rotate daily =====
+  // Deterministic by date so all visitors today see the same 3,
+  // and tomorrow they see different 3.
+  const SIDE_PICKS = [
+    { name: 'Matcha Latte', origin: 'Kyoto, Japan', desc: 'Ceremonial-grade matcha whisked into warm milk. Grassy, smooth, quietly energising.', photo: 'assets/gallery/05-latte.jpg', alt: 'Matcha latte with art in a ceramic cup', tags: ['Smooth','Grassy'] },
+    { name: 'Hazelnut Latte', origin: 'House favourite', desc: 'Espresso, steamed milk, slow-stirred hazelnut. Comfort in a cup.', photo: 'assets/menu/hazelnut-latte.jpg', alt: 'Hazelnut latte with foam art', tags: ['Nutty','Warm'] },
+    { name: 'Cortado', origin: 'From Spain', desc: 'Equal parts espresso and warm milk. Bold, balanced, no foam.', photo: 'assets/menu/cortado.jpg', alt: 'Cortado in a small glass cup', tags: ['Bold','Balanced'] },
+    { name: 'Flat White', origin: 'From Australia', desc: 'Velvety microfoam over a strong double shot. Creamy with a real espresso bite.', photo: 'assets/menu/flat-white.jpg', alt: 'Flat white in a white ceramic cup', tags: ['Creamy','Strong'] },
+    { name: 'Iced Latte', origin: 'Slow-poured cold', desc: 'Cold milk, fresh espresso, plenty of ice. The everyday cool-down.', photo: 'assets/menu/iced-latte.jpg', alt: 'Iced latte in a tall glass', tags: ['Cool','Smooth'] },
+    { name: 'Cappuccino', origin: 'From Italy', desc: 'Espresso, steamed milk, dense foam. The morning standard, done properly.', photo: 'assets/menu/cappuccino.jpg', alt: 'Cappuccino with rosetta foam art', tags: ['Foamy','Classic'] },
+    { name: 'Cold Brew Tonic', origin: 'House twist', desc: 'Slow-steeped cold brew, tonic water, lemon. Bright, fizzy, unexpected.', photo: 'assets/menu/cold-brew-tonic.jpg', alt: 'Cold brew tonic with citrus garnish', tags: ['Bright','Fizzy'] },
+    { name: 'Hojicha Latte', origin: 'Kyoto, Japan', desc: 'Roasted green tea steamed with milk. Toasty, low-caffeine, mellow.', photo: 'assets/menu/hojicha-latte.jpg', alt: 'Hojicha latte in a ceramic cup', tags: ['Toasty','Mellow'] },
+    { name: 'Iced Americano', origin: 'Long & cold', desc: 'Double shot stretched over ice and water. Clean, sharp, refreshing.', photo: 'assets/menu/iced-americano.jpg', alt: 'Iced americano in a tall glass', tags: ['Clean','Sharp'] },
+    { name: 'Vanilla Latte', origin: 'House favourite', desc: 'Espresso, steamed milk, vanilla syrup. Familiar, easy, always warming.', photo: 'assets/menu/vanilla-latte.jpg', alt: 'Vanilla latte with foam art', tags: ['Sweet','Warm'] },
+    { name: 'Hot Chocolate', origin: 'Belgian cocoa', desc: 'Real dark chocolate melted into warm milk. Thick, deep, indulgent.', photo: 'assets/menu/hot-chocolate.jpg', alt: 'Hot chocolate in a ceramic mug', tags: ['Rich','Cozy'] },
+    { name: 'Choco Chips Frappe', origin: 'Cold blend', desc: 'Cold milk, espresso, ice and chocolate chips. Dessert in a glass.', photo: 'assets/menu/choco-chips-frappe.jpg', alt: 'Choco chips frappe with whipped cream', tags: ['Sweet','Iced'] }
+  ];
+
+  const FEATURE_PICKS = [
+    { name: 'Vietnamese Cold Brew', origin: 'Our house favourite', desc: 'Strong, sweet, slow-steeped with condensed milk. The one our regulars keep coming back for.', photo: 'assets/menu/vietnamese-cold.jpg', alt: 'Vietnamese cold coffee in a glass with condensed milk', tags: ['Bold','Sweet','Iconic'] },
+    { name: 'Mocha', origin: 'House signature', desc: 'Espresso, chocolate, steamed milk. Dessert-meets-drink. Good for late conversations.', photo: 'assets/menu/mocha.jpg', alt: 'Mocha latte with rosetta art', tags: ['Rich','Chocolatey','Indulgent'] },
+    { name: 'Affogato', origin: 'From Italy', desc: 'A scoop of vanilla ice cream drowned in fresh espresso. Hot meets cold.', photo: 'assets/menu/affogato.jpg', alt: 'Affogato — espresso poured over vanilla ice cream', tags: ['Sweet','Iced','Iconic'] },
+    { name: 'Iced Cafe Mocha', origin: 'Cold & decadent', desc: 'Chocolate, espresso, milk, ice. The mocha — but cold and a little bolder.', photo: 'assets/menu/iced-cafe-mocha.jpg', alt: 'Iced cafe mocha in a tall glass', tags: ['Rich','Cold','Indulgent'] }
+  ];
+
+  const dayOfYear = (d) => {
+    const start = Date.UTC(d.getFullYear(), 0, 0);
+    const today = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+    return Math.floor((today - start) / 86400000);
+  };
+
+  const applyPick = (selector, p, badgeClass, badgeText) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    const img = el.querySelector('.pick__photo img');
+    if (img) { img.src = p.photo; img.alt = p.alt; }
+    const badge = el.querySelector('.pick__badge');
+    if (badge) {
+      badge.className = 'pick__badge pick__badge--' + badgeClass;
+      badge.textContent = badgeText;
+    }
+    const origin = el.querySelector('.pick__origin');
+    if (origin) origin.textContent = p.origin;
+    const name = el.querySelector('.pick__name');
+    if (name) name.textContent = p.name;
+    const desc = el.querySelector('.pick__desc');
+    if (desc) desc.textContent = p.desc;
+    const meta = el.querySelector('.pick__meta');
+    if (meta) {
+      meta.innerHTML = '';
+      p.tags.forEach((t) => {
+        const span = document.createElement('span');
+        span.className = 'pick__tag';
+        span.textContent = t;
+        meta.appendChild(span);
+      });
+    }
+    const cta = el.querySelector('.pick__cta');
+    if (cta) cta.href = 'https://wa.me/918109800010?text=' + encodeURIComponent("Hi, I'd like to order a " + p.name);
+  };
+
+  const rotatePicks = () => {
+    if (!document.getElementById('pick-1')) return;
+    const day = dayOfYear(new Date());
+    const len = SIDE_PICKS.length;
+    const i1 = day % len;
+    let i2 = (day * 7 + 3) % len;
+    if (i2 === i1) i2 = (i2 + 1) % len;
+    const feature = FEATURE_PICKS[day % FEATURE_PICKS.length];
+
+    applyPick('#pick-1', SIDE_PICKS[i1], 'morning', 'Morning');
+    applyPick('#pick-2', feature, 'signature', 'Signature');
+    applyPick('#pick-3', SIDE_PICKS[i2], 'evening', 'Evening');
+  };
+
+  rotatePicks();
 })();
 
 // ===== ENGAGEMENT COMPONENTS =====
