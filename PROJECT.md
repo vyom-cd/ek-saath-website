@@ -98,6 +98,12 @@ Site is live and iterating on content + engagement. Auto-deploys from GitHub `ma
 
 ## Recent changes
 
+- **2026-04-25** — **Four design features shipped** (`c638619`):
+  1. **Brew progress bars** — hairline terracotta bar fills the bottom edge of each `.brew` card on hover/focus in real proportional time. V60 (3 min) fills in ~6s, espresso (25s) in <1s, cold brew (18 hr) creeps and is the joke. Pure CSS via `--brew-seconds`.
+  2. **Marginalia scribbles** — 4 inline-SVG hand-drawn notes (wavy underline under Vietnamese Cold Brew in story meta, oval around 4.1 stat, "try this" arrow at Farm House Pizza, asterisk next to Signature badge). Caveat font loaded; stroke draw-on via IntersectionObserver, reduced-motion safe.
+  3. **Polaroid gallery** — `.bento` figures restyled as pinned snapshots: white border (12px / 36px bottom), soft shadow, alternating rotation `-3°/2°/-2°/3°/-1°/2°` per nth-child, captions in Caveat on the bottom strip at -1.5°. Hover lifts to 0°, scale 1.02, deeper shadow.
+  4. **Origin map** — stippled India silhouette in roasters section with 4 terracotta city dots (Mumbai, Pune, Bangalore, Chikmagalur). Hovering a roaster card pulses its matching city via a JS class toggle. Hides below 720px, becomes a banner between 720–1024px.
+- **2026-04-25** — Hojicha photo replaced (was matcha-cake lifestyle shot, now correct latte) and restored to the daily picks pool.
 - **2026-04-25** — **Three Picks now rotate daily.** Page promised "come tomorrow, it'll be three others" but the picks were hardcoded. Wired up deterministic daily rotation in `script.js`: pool of 12 side picks + 4 features, day-of-year selects which 3 show. All visitors today see the same 3; tomorrow it cycles. Cache bumped to `script.js?v=31`.
 - **2026-04-25** — Menu item thumbnails enlarged 64 → 110 px (88/72 px responsive). `styles.css?v=30`.
 - **2026-04-25** — Brewing-methods cards unified to dark espresso gradient (matching Vietnamese Cold Brew feature). Added looping pour-over video to section header.
