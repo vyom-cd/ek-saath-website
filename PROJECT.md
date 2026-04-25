@@ -8,7 +8,7 @@
 
 A website for **Ek Saath Cafe**, located in Bhilai, Chhattisgarh.
 
-> Status: **Brainstorming phase** — gathering requirements before any code.
+> Status: **Live + iterating.** Phase 1 storefront shipped, daily-rotating content + design polish ongoing.
 
 ---
 
@@ -51,12 +51,14 @@ A website for **Ek Saath Cafe**, located in Bhilai, Chhattisgarh.
 ## Open questions
 1. ~~Primary purpose~~ ✅ Phase 1 storefront
 2. ~~Cafe identity~~ ✅ coffee-forward + artisanal pizza, pure veg, family + students
-3. **Instagram handle confirmation** — @eksaathindia (what I found) vs @eksaathindia (what you said). Which is correct?
-4. **One site for BOTH locations, or just one?** Site structure changes based on this.
-5. Visual direction / mood — coming up next via browser
-6. Page structure — single long landing page vs 3–4 pages (About, Menu, Locations, Contact)
-7. Languages — English only, or Hindi + English?
-8. Technical — domain owned? hosting preference? who will maintain?
+3. ~~Instagram handle~~ ✅ @eksaathindia confirmed
+4. ~~One site for both locations?~~ ✅ v1 covers main location only
+5. ~~Visual direction~~ ✅ Editorial Warm locked
+6. ~~Page structure~~ ✅ Single long-scroll
+7. ~~Languages~~ ✅ English (with Devanagari एक साथ logo)
+8. ~~Hosting~~ ✅ Vercel
+9. **Custom domain** — still on `*.vercel.app`. Owner to decide whether to point a custom domain.
+10. **Real cafe photography** — currently using Pexels stock. Owner to supply real interior/staff/food photography when available.
 
 ## Decisions made
 - **2026-04-23** — Scope: Phase 1 (storefront + brand + menu + WhatsApp ordering). Full e-commerce deferred to Phase 2.
@@ -79,19 +81,36 @@ A website for **Ek Saath Cafe**, located in Bhilai, Chhattisgarh.
 | Accent (CTAs, labels, links) | Terracotta | `#8b5a3c` |
 | Spice (veg touch, small details) | Olive | `#6b7a3e` |
 
-**Typography (planned):**
+**Typography:**
 - Headlines: **Fraunces** (warm editorial serif, italic variant) — Google Fonts
 - Body: **Inter** (clean neutral sans) — Google Fonts
+- Devanagari logo `एक साथ`: **Tiro Devanagari Hindi** — Google Fonts
+- Hand-drawn marginalia + polaroid captions: **Caveat** — Google Fonts
 
 ## Architecture
 
 - **Structure:** Single-page long scroll (locked 2026-04-23)
-- **Sections (in order):** Nav → Hero → Story → Menu → Gallery → Visit → Footer
+- **Sections (in order):**
+  1. Nav (sticky, compacts on scroll) + scroll progress bar
+  2. Hero — full-bleed photo carousel, 3s auto-rotate
+  3. Marquee strip
+  4. Today's Brews — 3 daily-rotating picks (deterministic by date)
+  5. Story — rotating pull-quote + meta sidebar (with hand-drawn marginalia)
+  6. Roasters — 4 flip-cards on bean-texture background + India origin map
+  7. Stats — animated counters (with marginalia oval around 4.1)
+  8. Brewing Methods — 5 dark-card brew guides + looping pour-over video, hover-fill progress bars
+  9. Menu — chocolate-brown bg, mood picker, tab filter, 43 items, feature cards (Farm House Pizza tagged with "try this" scribble)
+  10. Gallery — polaroid bento grid with Caveat captions, lightbox modal
+  11. Visit — address, hours, "Open now" chip
+  12. Newsletter — opens WhatsApp with prefilled email
+  13. Footer
 - **Tech stack:** Plain HTML + CSS + vanilla JS (no framework, no build step)
-  - Fonts: Fraunces + Inter via Google Fonts CDN
-  - Icons: Lucide inline SVG
-- **Hosting:** Cloudflare Pages (free, fastest in India). Deploy via git push OR direct upload — choose at deploy time.
-- **Domain:** _TBD — to confirm._ Default for v1: free `eksaath.pages.dev` subdomain. Custom domain (~₹700-900/year) optional.
+  - Fonts: Fraunces + Inter + Tiro Devanagari Hindi + Caveat via Google Fonts CDN
+  - Icons: Inline SVG (custom, plus hand-drawn marginalia)
+- **Hosting:** **Vercel** (Hobby tier). Auto-deploys from GitHub `main` on push.
+  - Repo: [`vyom-cd/ek-saath-website`](https://github.com/vyom-cd/ek-saath-website)
+  - Headers/caching: configured in `vercel.json` (immutable assets, must-revalidate HTML)
+- **Domain:** Default `*.vercel.app`. Custom domain TBD by owner.
 
 ## Timeline / next step
 Site is live and iterating on content + engagement. Auto-deploys from GitHub `main` to Vercel. No active blockers.
