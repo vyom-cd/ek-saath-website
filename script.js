@@ -177,6 +177,192 @@
   }
 })();
 
+// ===== ENGAGEMENT COMPONENTS =====
+(function () {
+  // #6 — Scroll progress bar
+  const progressBar = document.getElementById('scroll-progress-bar');
+  if (progressBar) {
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // #1 — Mobile drawer
+  const burger = document.getElementById('nav-burger');
+  const drawer = document.getElementById('drawer');
+  const drawerBackdrop = document.getElementById('drawer-backdrop');
+  const drawerClose = document.getElementById('drawer-close');
+  const openDrawer = () => {
+    drawer.classList.add('is-open');
+    drawerBackdrop.classList.add('is-open');
+    burger.classList.add('is-open');
+    burger.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeDrawer = () => {
+    drawer.classList.remove('is-open');
+    drawerBackdrop.classList.remove('is-open');
+    burger.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  if (burger && drawer) {
+    burger.addEventListener('click', () => {
+      drawer.classList.contains('is-open') ? closeDrawer() : openDrawer();
+    });
+    drawerClose && drawerClose.addEventListener('click', closeDrawer);
+    drawerBackdrop && drawerBackdrop.addEventListener('click', closeDrawer);
+    drawer.querySelectorAll('.drawer__link, .drawer__cta a').forEach(a => a.addEventListener('click', closeDrawer));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && drawer.classList.contains('is-open')) closeDrawer(); });
+  }
+
+  // #2 — Stats / number counters
+  const stats = document.querySelectorAll('.stat__num');
+  const tickStat = (el) => {
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals || '0');
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1500;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const cur = target * eased;
+      el.textContent = prefix + (decimals ? cur.toFixed(decimals) : Math.floor(cur).toLocaleString()) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  if (stats.length && 'IntersectionObserver' in window) {
+    const statObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { tickStat(e.target); statObs.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    stats.forEach(s => statObs.observe(s));
+  }
+
+  // #4 — Rotating pull quote (every 3s)
+  const pullquote = document.getElementById('pullquote');
+  if (pullquote) {
+    const quotes = [
+      { q: 'It’s a small community, and a really warm one. The Vietnamese cold brew is unreal.', cite: '— Priya S. · ★ 5.0 Google' },
+      { q: 'Best cafe in Bhilai. The pizza dough is hand-stretched, you can tell. We come every weekend.', cite: '— Aman R. · ★ 4.5 Zomato' },
+      { q: 'Open till midnight, pure veg, and the matcha is properly made. Found my new study spot.', cite: '— Neha T. · ★ 4.0 Google' },
+      { q: 'Multi-roaster coffee at this quality in Bhilai is rare. The hojicha latte made my week.', cite: '— Rohan M. · ★ 4.5 Google' },
+    ];
+    const txt = pullquote.querySelector('.pullquote__text');
+    const cite = pullquote.querySelector('.pullquote__cite');
+    let qi = 0;
+    setInterval(() => {
+      qi = (qi + 1) % quotes.length;
+      pullquote.classList.add('is-changing');
+      setTimeout(() => {
+        txt.textContent = quotes[qi].q;
+        cite.textContent = quotes[qi].cite;
+        pullquote.classList.remove('is-changing');
+      }, 320);
+    }, 3000);
+  }
+
+  // #8 — Mood picker
+  const moodPills = document.querySelectorAll('.mood__pill');
+  const moodResult = document.getElementById('mood-result');
+  moodPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      moodPills.forEach(p => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+      const drink = pill.dataset.drink;
+      const tab = pill.dataset.tab;
+      moodResult.textContent = '→ Try the ' + drink;
+      moodResult.classList.add('is-visible');
+      // Switch the menu tab to highlight the drink's category
+      if (tab) {
+        const tabBtn = document.querySelector('.menu__tab[data-filter="' + tab + '"]');
+        if (tabBtn) tabBtn.click();
+      }
+    });
+  });
+
+  // #3 — Gallery lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+  const galleryFigures = document.querySelectorAll('.gallery__bento .bento');
+  let lbIdx = 0;
+  const lbItems = [];
+  galleryFigures.forEach((fig, i) => {
+    const img = fig.querySelector('img');
+    const cap = fig.querySelector('figcaption');
+    if (img) {
+      lbItems.push({ src: img.src, alt: img.alt, caption: cap ? cap.textContent : '' });
+      fig.addEventListener('click', () => { lbIdx = i; openLB(); });
+    }
+  });
+  const openLB = () => {
+    if (!lbItems.length) return;
+    const item = lbItems[lbIdx];
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.alt;
+    lightboxCaption.textContent = item.caption;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeLB = () => {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  const navLB = (dir) => {
+    lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
+    openLB();
+  };
+  if (lightbox) {
+    lightboxClose.addEventListener('click', closeLB);
+    lightboxPrev.addEventListener('click', e => { e.stopPropagation(); navLB(-1); });
+    lightboxNext.addEventListener('click', e => { e.stopPropagation(); navLB(1); });
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLB();
+      else if (e.key === 'ArrowLeft') navLB(-1);
+      else if (e.key === 'ArrowRight') navLB(1);
+    });
+  }
+
+  // #5 — Parallax hero (photo translates slower than scroll)
+  const heroPhotos = document.querySelectorAll('.hero__photo');
+  if (heroPhotos.length) {
+    const onParallax = () => {
+      const y = window.scrollY;
+      const yo = Math.min(y * 0.3, 200);
+      heroPhotos.forEach(p => { p.style.transform = `scale(1.04) translateY(${yo}px)`; });
+    };
+    window.addEventListener('scroll', onParallax, { passive: true });
+  }
+
+  // #9 — 3D tilt on brewing cards (NOT roasters)
+  const brewCards = document.querySelectorAll('.brew');
+  brewCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+      const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+      card.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+})();
+
 // ===== Newsletter (Component 8) — opens WhatsApp with the email =====
 function handleNewsletter(e) {
   e.preventDefault();

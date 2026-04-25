@@ -19,9 +19,12 @@
 
   <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=24">
+  <link rel="stylesheet" href="styles.css?v=25">
 </head>
 <body>
+
+  <!-- Component #6: Scroll progress bar -->
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scroll-progress-bar"></div></div>
 
   <a href="#top" class="skip-link">Skip to main content</a>
 
@@ -43,6 +46,9 @@
           <span class="open-now__dot" aria-hidden="true"></span>
           <span class="open-now__text">Open now</span>
         </span>
+        <button class="nav__burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
         <a class="btn btn-primary nav__cta" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.14-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.76.45 3.41 1.25 4.85L2 22l5.25-1.37A9.95 9.95 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.51 0-2.91-.4-4.13-1.1l-.3-.17-3.12.81.83-3.04-.2-.31A7.96 7.96 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
           <span class="nav__cta-text">WhatsApp</span>
@@ -50,6 +56,26 @@
       </div>
     </div>
   </header>
+
+  <!-- Component #1: Mobile drawer (slides in from the right) -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+    <nav class="drawer__nav">
+      <a href="#story" class="drawer__link">Story</a>
+      <a href="#menu" class="drawer__link">Menu</a>
+      <a href="#gallery" class="drawer__link">Gallery</a>
+      <a href="#visit" class="drawer__link">Visit</a>
+    </nav>
+    <div class="drawer__cta">
+      <a class="btn btn-primary" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order">Order on WhatsApp</a>
+      <a class="btn btn-ghost" href="tel:+918109800010">+91 81098 00010</a>
+    </div>
+    <div class="drawer__brand">
+      <span class="drawer__hindi">एक साथ</span>
+      <span class="drawer__tag">Where friends meet, and memories are made.</span>
+    </div>
+  </div>
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
 
   <main>
 
@@ -206,7 +232,6 @@
 
     <!-- STORY -->
     <section class="story section" id="story">
-      <div class="ghost-num" aria-hidden="true">01</div>
       <div class="container story__inner">
 
         <div class="story__visual reveal">
@@ -234,11 +259,11 @@
             because the best conversations start late.
           </p>
 
-          <!-- Big pull quote -->
-          <blockquote class="pullquote">
+          <!-- Big pull quote — rotating real reviews from Google/Zomato (3s) -->
+          <blockquote class="pullquote" id="pullquote" aria-live="polite">
             <span class="pullquote__mark" aria-hidden="true">&ldquo;</span>
-            <p>It&rsquo;s a small community, and a really warm one.</p>
-            <cite>— A regular</cite>
+            <p class="pullquote__text">It&rsquo;s a small community, and a really warm one. The Vietnamese cold brew is unreal.</p>
+            <cite class="pullquote__cite">— Priya S. · ★ 5.0 Google</cite>
           </blockquote>
 
           <div class="story__meta">
@@ -362,6 +387,28 @@
               </div>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Component #2: Stats / number counters -->
+    <section class="stats" aria-label="Trust signals">
+      <div class="container stats__inner reveal">
+        <div class="stat">
+          <div class="stat__num" data-target="5500" data-suffix="+">0</div>
+          <div class="stat__label">Followers on @eksaathindia</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num" data-target="100" data-suffix="+">0</div>
+          <div class="stat__label">Reviews online</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num" data-target="4.1" data-decimals="1">0</div>
+          <div class="stat__label">Average rating ★</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num" data-target="2021" data-prefix="Since ">0</div>
+          <div class="stat__label">Brewing in Bhilai</div>
         </div>
       </div>
     </section>
@@ -516,8 +563,25 @@
     </section>
 
     <!-- MENU -->
-    <section class="menu section" id="menu">
-      <div class="ghost-num" aria-hidden="true">02</div>
+    <section class="menu section" id="menu" data-mood-host="">
+      <!-- Component #8: Mood picker (sits at the top of menu section) -->
+      <div class="container">
+        <div class="mood reveal">
+          <div class="mood__head">
+            <div class="label">Find your mood</div>
+            <h3 class="heading-serif mood__title">What are you in the mood for?</h3>
+          </div>
+          <div class="mood__pills" role="list">
+            <button class="mood__pill" data-drink="Vietnamese Cold Coffee" data-tab="cold-coffee">I need a kick</button>
+            <button class="mood__pill" data-drink="Matcha Latte" data-tab="matcha-tea">Slow morning</button>
+            <button class="mood__pill" data-drink="Iced Latte" data-tab="cold-coffee">Something cold</button>
+            <button class="mood__pill" data-drink="Mocha" data-tab="hot-coffee">Sweet treat</button>
+            <button class="mood__pill" data-drink="Hojicha Latte" data-tab="matcha-tea">Try something new</button>
+            <button class="mood__pill" data-drink="Cappuccino" data-tab="hot-coffee">Classic</button>
+          </div>
+          <div class="mood__result" id="mood-result"></div>
+        </div>
+      </div>
       <div class="container">
         <div class="menu__header reveal">
           <div class="label">The menu</div>
@@ -659,7 +723,6 @@
 
     <!-- GALLERY (BENTO) -->
     <section class="gallery section" id="gallery">
-      <div class="ghost-num" aria-hidden="true">03</div>
       <div class="container">
         <div class="gallery__header reveal">
           <div class="label">The room</div>
@@ -702,7 +765,6 @@
 
     <!-- VISIT -->
     <section class="visit section" id="visit">
-      <div class="ghost-num" aria-hidden="true">04</div>
       <div class="container visit__inner">
 
         <div class="visit__info reveal">
@@ -776,6 +838,17 @@
 
   </main>
 
+  <!-- Component #3: Gallery lightbox modal -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+    <button class="lightbox__close" id="lightbox-close" aria-label="Close">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Previous photo">‹</button>
+    <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Next photo">›</button>
+    <figure class="lightbox__stage">
+      <img class="lightbox__img" id="lightbox-img" src="" alt="">
+      <figcaption class="lightbox__caption" id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+
   <!-- STICKY MOBILE ORDER BAR — only shows below 720px -->
   <div class="mobile-bar" aria-label="Quick order actions">
     <a class="mobile-bar__btn mobile-bar__wa" href="https://wa.me/918109800010?text=Hi%2C%20I%27d%20like%20to%20order">
@@ -828,6 +901,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=16" defer></script>
+  <script src="script.js?v=25" defer></script>
 </body>
 </html>
