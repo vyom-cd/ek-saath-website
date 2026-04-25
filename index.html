@@ -19,7 +19,7 @@
 
   <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=28">
+  <link rel="stylesheet" href="styles.css?v=29">
 </head>
 <body>
 
@@ -426,6 +426,17 @@
             Every brew method pulls a different character out of the same coffee.
             Ask the barista to match a method to your mood.
           </p>
+        </div>
+
+        <!-- Short looping video showing how a brew is pulled -->
+        <div class="brewing__video reveal" aria-hidden="true">
+          <video class="brewing__video-el" autoplay loop muted playsinline preload="metadata" poster="assets/menu/cappuccino.jpg">
+            <source src="assets/brewing-loop.mp4" type="video/mp4">
+          </video>
+          <div class="brewing__video-caption">
+            <span class="brewing__video-dot"></span>
+            Watch how a brew is pulled
+          </div>
         </div>
 
         <div class="brewing__grid reveal" data-count="5">
