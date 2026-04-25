@@ -3,7 +3,7 @@
 > **📄 Design spec (APPROVED ✅ 2026-04-23):** [`docs/superpowers/specs/2026-04-23-ek-saath-cafe-website-design.md`](docs/superpowers/specs/2026-04-23-ek-saath-cafe-website-design.md)
 > **📋 Build plan:** ✅ executed — [`docs/superpowers/plans/2026-04-23-ek-saath-cafe-website.md`](docs/superpowers/plans/2026-04-23-ek-saath-cafe-website.md)
 > **📘 Owner handoff:** ✅ [`HANDOFF.md`](HANDOFF.md)
-> **🌐 Status:** Local only — deployment deferred until owner says "go live".
+> **🌐 Status:** Live on Vercel — repo `vyom-cd/ek-saath-website`, auto-deploys from `main`.
 > This PROJECT.md is the living overview. The spec above is the source of truth for the build.
 
 A website for **Ek Saath Cafe**, located in Bhilai, Chhattisgarh.
@@ -94,7 +94,18 @@ A website for **Ek Saath Cafe**, located in Bhilai, Chhattisgarh.
 - **Domain:** _TBD — to confirm._ Default for v1: free `eksaath.pages.dev` subdomain. Custom domain (~₹700-900/year) optional.
 
 ## Timeline / next step
-Currently answering clarifying questions in the brainstorming flow. Visual companion running at `http://localhost:52390` for layout/color questions.
+Site is live and iterating on content + engagement. Auto-deploys from GitHub `main` to Vercel. No active blockers.
+
+## Recent changes
+
+- **2026-04-25** — **Three Picks now rotate daily.** Page promised "come tomorrow, it'll be three others" but the picks were hardcoded. Wired up deterministic daily rotation in `script.js`: pool of 12 side picks + 4 features, day-of-year selects which 3 show. All visitors today see the same 3; tomorrow it cycles. Cache bumped to `script.js?v=31`.
+- **2026-04-25** — Menu item thumbnails enlarged 64 → 110 px (88/72 px responsive). `styles.css?v=30`.
+- **2026-04-25** — Brewing-methods cards unified to dark espresso gradient (matching Vietnamese Cold Brew feature). Added looping pour-over video to section header.
+- **2026-04-25** — Menu section recolored to chocolate-brown background with cards in dark espresso; mood picker reverted to transparent with amber accent text for readability.
+- **2026-04-25** — Engagement components added: scroll-progress bar, mobile drawer, animated stats counters, testimonials carousel, mood picker, lightbox, rotating pull-quote, parallax + tilt.
+- **2026-04-25** — Roaster flip-cards now show photo on the front face (4 bean-journey photos: subko, blue-tokai, roastery, third-wave).
+- **2026-04-24** — All 42 menu photos re-fetched from Pexels via search (zero duplicates, all veg-correct).
+- **2026-04-24** — Deployed to Vercel via GitHub repo `vyom-cd/ek-saath-website`. `vercel.json` headers fixed (path-based, not regex extensions).
 
 ---
 
