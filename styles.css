@@ -2246,7 +2246,7 @@ a:focus-visible { outline-offset: 4px; }
       rgba(43, 30, 20, 0.82) 55%,
       rgba(20, 12, 8, 0.9) 100%
     ),
-    url('assets/brewing-bg.jpg');
+    url('assets/brewing-bg.jpg?v=2');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
