@@ -2239,10 +2239,18 @@ a:focus-visible { outline-offset: 4px; }
    ========================================================================== */
 
 .brewing {
-  background:
-    radial-gradient(ellipse at 10% 0%, rgba(139, 90, 60, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 90% 100%, rgba(107, 122, 62, 0.04) 0%, transparent 50%),
-    var(--cream-soft);
+  background-image:
+    linear-gradient(
+      155deg,
+      rgba(20, 12, 8, 0.88) 0%,
+      rgba(43, 30, 20, 0.82) 55%,
+      rgba(20, 12, 8, 0.9) 100%
+    ),
+    url('assets/brewing-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   padding: var(--space-section) 0;
   position: relative;
   overflow: hidden;
@@ -2294,16 +2302,26 @@ a:focus-visible { outline-offset: 4px; }
   font-size: var(--text-h2);
   margin: var(--space-2) auto;
   max-width: 18ch;
+  color: #f3eee0;
 }
 
 .brewing__sub {
   font-family: var(--font-serif);
   font-style: italic;
-  color: var(--muted);
+  color: rgba(244, 237, 224, 0.78);
   font-size: 1.0625rem;
   max-width: 44ch;
   margin: 0 auto;
   line-height: 1.55;
+}
+
+.brewing .label { color: #e4a24d; }
+.brewing__rail { color: rgba(244, 237, 224, 0.18); }
+.brewing__video-caption { color: rgba(244, 237, 224, 0.85); }
+
+/* Mobile: scroll-attachment falls back from fixed (iOS Safari ignores fixed) */
+@media (max-width: 1024px) {
+  .brewing { background-attachment: scroll; }
 }
 
 /* Brewing video — short loop showing how a brew is pulled */
