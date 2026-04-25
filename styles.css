@@ -1643,12 +1643,11 @@ a:focus-visible { outline-offset: 4px; }
   position: absolute;
   inset: 0;
   border-radius: var(--radius);
-  padding: var(--space-3);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   box-shadow: 0 6px 22px rgba(43, 30, 20, 0.12), 0 1px 3px rgba(43, 30, 20, 0.08);
   transition: box-shadow 300ms, transform 300ms;
 }
@@ -1659,6 +1658,39 @@ a:focus-visible { outline-offset: 4px; }
   background: #ffffff;
   border: 1px solid var(--border);
   border-top: 3px solid var(--terracotta);
+  padding: 0;
+  justify-content: flex-start;
+}
+
+.roaster__face--back {
+  padding: var(--space-3);
+  justify-content: center;
+}
+
+/* Photo on the front of the card */
+.roaster__photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--cream-soft);
+}
+
+.roaster__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92);
+  transition: transform 600ms var(--ease-out-expo);
+}
+
+.roaster:hover .roaster__photo img { transform: scale(1.05); }
+
+.roaster__info {
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
 }
 
 .roaster__face--back {
