@@ -1433,15 +1433,14 @@ a:focus-visible { outline-offset: 4px; }
   .stats__inner { grid-template-columns: 1fr 1fr; gap: var(--space-3) var(--space-2); }
 }
 
-/* #8: Mood picker — same dark espresso treatment as feature menu cards */
+/* #8: Mood picker — transparent panel with subtle border */
 .mood {
-  background: linear-gradient(155deg, #3d2817 0%, var(--espresso) 100%);
+  background: transparent;
   border: 1px solid rgba(244, 237, 224, 0.18);
   border-radius: var(--radius-lg);
   padding: var(--space-5) var(--space-4);
   margin-bottom: var(--space-5);
   text-align: center;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 }
 .mood__head { margin-bottom: var(--space-3); }
 .mood__title { font-size: 1.5rem; color: var(--cream); margin-top: 4px; }
@@ -1472,12 +1471,14 @@ a:focus-visible { outline-offset: 4px; }
   margin-top: var(--space-3);
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.125rem;
-  color: var(--terracotta);
-  font-weight: 600;
-  min-height: 28px;
+  font-size: 1.25rem;
+  color: #e4a24d;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  min-height: 32px;
   opacity: 0;
   transition: opacity 300ms;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 .mood__result.is-visible { opacity: 1; }
 
