@@ -851,17 +851,19 @@ body.js-ready .reveal.is-visible {
   justify-content: space-between;
   gap: var(--space-3);
   padding: var(--space-3);
-  background: #fff;
+  background: linear-gradient(155deg, #3d2817 0%, var(--espresso) 100%);
+  color: var(--cream);
   border-radius: var(--radius);
-  border: 1px solid var(--border);
-  transition: transform var(--duration-fast), box-shadow var(--duration-fast);
+  border: 1px solid rgba(244, 237, 224, 0.1);
+  transition: transform var(--duration-fast), box-shadow var(--duration-fast), border-color var(--duration-fast);
 }
 
 .menu__item[hidden] { display: none; }
 
 .menu__item:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+  border-color: rgba(244, 237, 224, 0.2);
 }
 
 /* Small thumbnail at the start of each non-feature item */
@@ -871,7 +873,7 @@ body.js-ready .reveal.is-visible {
   border-radius: 6px;
   overflow: hidden;
   flex-shrink: 0;
-  background: var(--cream-soft);
+  background: rgba(244, 237, 224, 0.06);
   align-self: center;
 }
 
@@ -899,14 +901,14 @@ body.js-ready .reveal.is-visible {
   font-family: var(--font-serif);
   font-weight: 600;
   font-size: 1.125rem;
-  color: var(--espresso);
+  color: var(--cream);
   margin-bottom: 0.25rem;
   line-height: 1.2;
 }
 
 .menu__item p {
   font-size: 0.875rem;
-  color: var(--muted);
+  color: rgba(244, 237, 224, 0.65);
   line-height: 1.5;
 }
 
@@ -938,7 +940,7 @@ body.js-ready .reveal.is-visible {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 1.125rem;
-  color: var(--espresso);
+  color: var(--cream);
 }
 
 .menu__order {
@@ -1431,14 +1433,15 @@ a:focus-visible { outline-offset: 4px; }
   .stats__inner { grid-template-columns: 1fr 1fr; gap: var(--space-3) var(--space-2); }
 }
 
-/* #8: Mood picker */
+/* #8: Mood picker — same dark espresso treatment as feature menu cards */
 .mood {
-  background: rgba(244, 237, 224, 0.05);
-  border: 1px solid rgba(244, 237, 224, 0.15);
+  background: linear-gradient(155deg, #3d2817 0%, var(--espresso) 100%);
+  border: 1px solid rgba(244, 237, 224, 0.18);
   border-radius: var(--radius-lg);
-  padding: var(--space-4);
+  padding: var(--space-5) var(--space-4);
   margin-bottom: var(--space-5);
   text-align: center;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 }
 .mood__head { margin-bottom: var(--space-3); }
 .mood__title { font-size: 1.5rem; color: var(--cream); margin-top: 4px; }
