@@ -743,7 +743,28 @@ body.js-ready .reveal.is-visible {
    Menu
    ========================================================================== */
 
-.menu { background: var(--cream-soft); }
+.menu {
+  background-image:
+    linear-gradient(180deg, rgba(251, 246, 234, 0.94) 0%, rgba(251, 246, 234, 0.97) 100%),
+    url('assets/menu-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Subtle warmth tint over the bg */
+.menu::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(139, 90, 60, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.menu .container { position: relative; z-index: 1; }
 
 .menu__header { max-width: 50rem; margin-bottom: var(--space-5); position: relative; z-index: 1; }
 .menu__title { font-size: var(--text-h2); margin: var(--space-2) 0 var(--space-2); }
