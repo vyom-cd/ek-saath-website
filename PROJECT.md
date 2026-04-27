@@ -117,6 +117,9 @@ Site is live and iterating on content + engagement. Auto-deploys from GitHub `ma
 
 ## Recent changes
 
+- **2026-04-27** — **Brewing section now has a photo background** (`ea437e3`). Replaced the cream-soft bg with a pour-over brewing scene + dark espresso gradient overlay (~85%). Title/sub/label flipped to cream/amber for contrast. `background-attachment: fixed` on desktop, `scroll` below 1024px (iOS Safari ignores fixed). Initial bean-texture photo was swapped to the pour-over per user feedback. `?v=2` cache-bust on the image URL since `/assets/*` is immutable for 1 year.
+- **2026-04-27** — Cache-busted the Hojicha menu-list thumbnail (`76eed80`) — was missed in the earlier fix and still showed cached matcha-cake until refresh.
+- **2026-04-25** — **Hojicha photo finally correct** (`7ab078e`). First attempt downloaded the wrong Pexels photo (alt-to-URL pairing was off — Pexels search results aren't aligned 1:1 by DOM order). Re-downloaded `pexels-photo-35159881` (verified clean latte close-up via paired alt extraction) and added `?v=2` cache-bust because Vercel's `Cache-Control: public, max-age=31536000, immutable` on `/assets/*` was making browsers serve the old image forever. Gallery bento caption updated "Matcha latte" → "The latte" to match.
 - **2026-04-25** — **Four design features shipped** (`c638619`):
   1. **Brew progress bars** — hairline terracotta bar fills the bottom edge of each `.brew` card on hover/focus in real proportional time. V60 (3 min) fills in ~6s, espresso (25s) in <1s, cold brew (18 hr) creeps and is the joke. Pure CSS via `--brew-seconds`.
   2. **Marginalia scribbles** — 4 inline-SVG hand-drawn notes (wavy underline under Vietnamese Cold Brew in story meta, oval around 4.1 stat, "try this" arrow at Farm House Pizza, asterisk next to Signature badge). Caveat font loaded; stroke draw-on via IntersectionObserver, reduced-motion safe.
